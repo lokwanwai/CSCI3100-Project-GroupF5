@@ -46,7 +46,7 @@ npm start
 
 
 ### Dev Accounts
-```txt
+
 Dev temp accounts created for easy tesings:
 User account:
 email: user
@@ -55,25 +55,25 @@ pwd: user
 admin account:
 email: admin
 pwd: admin
-```
+
 
 ## Notes to all
 ### Database setup
-```txt
+
 Please try to setup a local MongoDB server at port 27017 (Default port) with a database named CSCI3100_F5
 Or you can indicate yours under backend/modules/dbInit/config.js
 Everytime you start the backend server, it will reset your database and insert with demo data
 Please make sure if you have added/modified the table, you do add/change the data model and demo data under backend/models and backend/data
-```
+
 
 ### Auth API usage
-```txt
+
 once login, the user will be granted a cookies with authentication token, you may use the api localhost:5001/api/auth/authenticate (POST) to check if the token is valid, if no, it will return Unauthorized, else, it will return Json object like below:
 {
     "email": "dummy@email.com",
     "isAdmin": false
 }
-```
+
 
 ### example "/api/auth/authenticate" usage under React
 ```bash

@@ -12,13 +12,14 @@ const crypto = require('crypto');
 // Check if email is already registered
 async function checkEmail(email) {
     // Check if email is undefined
+    // console.log(email);
     if (email === undefined) {
         // console.log("Email input is undefined.");
         return false;
     }
     
     // console.log(email);
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ userEmail:email });
     return user ? true : false;
 }
 
@@ -40,7 +41,7 @@ async function generateAndStoreOTP(email) {
 async function sendOTP(email) {
     // console.log({ path: path.resolve(__dirname, '.env') });
     // Query the OTP from the database
-    const otpRecord = await RegistrationOTP.findOne({ email: email });
+    const otpRecord = await RegistrationOTP.findOne({ email:email  });
     if (!otpRecord) {
       throw new Error('OTP not found for the provided email');
     }

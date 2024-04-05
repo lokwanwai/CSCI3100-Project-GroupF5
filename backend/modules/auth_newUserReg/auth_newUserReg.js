@@ -24,7 +24,6 @@ router.use(cors(corsOptions));
 // Route to handle user login
 router.post('/login', loginUser);
 
-// Route to check if email is already registered
 router.post('/check-email', async (req, res) => {
     try {
         const isRegistered = await checkEmail(req.body.email);
@@ -34,17 +33,33 @@ router.post('/check-email', async (req, res) => {
     }
 });
 
-// Combined Route to generate OTP and send it to the user's email
+// Route to check if email is already registered
 router.post('/generate-and-send-otp', async (req, res) => {
     try {
-        const email = req.body.email;
-        const otp = await generateAndStoreOTP(email);
-        await sendOTP(email); 
-        res.json({ message: 'OTP generated and sent successfully' });
+        // Check if the email is already registered
+        const isRegistered = await checkEmail(req.body.email);
+        // console.log(isRegistered);
+        if (isRegistered) {
+            // If email is already registered, return an error
+            return res.status(503).json({ errorCode: 'EMAIL_ALREADY_REGISTERED', message: 'Email is already registered.' });
+        }
+
+        // If the email is not registered, generate and store OTP
+        const otp = await generateAndStoreOTP(req.body.email);
+        console.log(otp);
+        // Send OTP to the user's email
+        await sendOTP(req.body.email);
+
+        // Success response
+        res.json({ message: 'OTP generated and sent successfully.' });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        // Differentiate general error from email sending specific error
+        const statusCode = error.code === 'SENDING_OTP_FAILED' ? 502 : 500;
+        const errorMessage = error.code === 'SENDING_OTP_FAILED' ? 'Failed to send OTP.' : error.message;
+        res.status(statusCode).json({ errorCode: error.code || 'GENERAL_ERROR', message: errorMessage });
     }
 });
+
 
 // // Route for re-sending OTP (can call the sendOTP function again)
 // router.post('/resend-otp', async (req, res) => {
