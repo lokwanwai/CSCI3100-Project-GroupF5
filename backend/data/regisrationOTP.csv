@@ -1,0 +1,5 @@
+userEmail,userName,saltedPassword,isAdmin
+dummy1@testing.com,DummyUser1,someHashedPasswordHere,false
+dummy2@testing.com,DummyUser2,someHashedPasswordHere,false
+admin@testing.com,AdminUser,anotherHashedPasswordHere,true
+admin1@testing.com,AdminUser1,anotherHashedPasswordHere,true

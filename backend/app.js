@@ -1,14 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-// const connectDB = require('./config/db');
-
+const { connectDB, initDB } = require('./modules/dbInit/dbInit');
+const cookieParser = require('cookie-parser');
 // Import routes
 const productRoutes = require('./routes/productRoutes');
-// const userRoutes = require('./routes/userRoutes');
-// const orderRoutes = require('./routes/orderRoutes');
-
-// Connect to the database
-// connectDB();
+// Import the authNewUserReg router
+const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg');
 
 const app = express();
 
@@ -16,13 +13,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Mount routes
-app.use('/api/products', productRoutes);
-// app.use('/api/users', userRoutes);
-// app.use('/api/orders', orderRoutes);
+app.use(cookieParser());
 
-// Start the server
-const PORT = 5001;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Establish connection to the database and initialize it
+(async () => {
+    await connectDB();
+    await initDB();
+
+    // // Mount routes after DB initialization
+    // app.use('/api/products', productRoutes);
+
+
+    // Mount the auth_newUserReg routes
+    app.use('/api/auth', authNewUserRegRoutes); // This line includes all the authentication and user registration routes
+
+    // Start the server
+    const PORT = process.env.PORT || 5001;
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+})();
