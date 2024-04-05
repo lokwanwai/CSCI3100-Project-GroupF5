@@ -45,6 +45,18 @@ npm start
 ```
 
 
+### Dev Accounts
+```txt
+Dev temp accounts created for easy tesings:
+User account:
+email: user
+pwd: user
+
+admin account:
+email: admin
+pwd: admin
+```
+
 ## Notes to all
 ### Database setup
 ```txt
