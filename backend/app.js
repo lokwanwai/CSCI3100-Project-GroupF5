@@ -9,8 +9,16 @@ const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg'
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// // Middleware
+// CORS options
+const corsOptions = {
+    origin: 'http://localhost:3000', // Set to match the requesting origin
+    credentials: true, // Required to include credentials like cookies
+};
+
+// Apply CORS middleware with the specified options
+app.use(cors(corsOptions));
+// app.use(cors());
 app.use(express.json());
 
 app.use(cookieParser());

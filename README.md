@@ -47,19 +47,52 @@ npm start
 
 ## Notes to all
 ### Database setup
+```txt
 Please try to setup a local MongoDB server at port 27017 (Default port) with a database named CSCI3100_F5
 Or you can indicate yours under backend/modules/dbInit/config.js
 Everytime you start the backend server, it will reset your database and insert with demo data
 Please make sure if you have added/modified the table, you do add/change the data model and demo data under backend/models and backend/data
-
+```
 
 ### Auth API usage
+```txt
 once login, the user will be granted a cookies with authentication token, you may use the api localhost:5001/api/auth/authenticate (POST) to check if the token is valid, if no, it will return Unauthorized, else, it will return Json object like below:
 {
     "email": "dummy@email.com",
     "isAdmin": false
 }
+```
 
+### example "/api/auth/authenticate" usage under React
+```bash
+useEffect(() => {
+        // Since the token is stored in cookies, we include credentials in our fetch request.
+        // The browser will automatically handle sending the appropriate cookies.
+        fetch('http://localhost:5001/api/auth/authenticate', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include', // Ensure cookies, including auth tokens, are included in the request
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Token validation failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setUserEmail(data.email); // Set user email if token is valid
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }, []); // The effect runs once after the component mounts
+```
+You may then apply it to your own logic for authentication\
+
+### Logout Function
+logout function has also been completed and configured correctly under Header/index.js, try not to change the logic while you can modify the style
 
 ## File Structure
 

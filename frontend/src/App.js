@@ -13,6 +13,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          {/* <Route path="/admin" element={<Admin />} /> */}
           {/* Add more routes for other pages */}
         </Routes>
       </div>

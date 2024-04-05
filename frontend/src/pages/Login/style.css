@@ -1,0 +1,162 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body, html {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height */
+}
+
+/* Base styles */
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures it takes the full width of its parent */
+    /* Initial top and bottom margins can be set here if needed */
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+}
+
+/* Responsive styles for larger devices (e.g., tablets, desktops) */
+@media (min-width: 768px) {
+    .login-form-container {
+        /* Larger top and bottom margins for larger devices */
+        margin-top: 150px;
+        margin-bottom: 150px;
+    }
+}
+
+/* Responsive styles for medium-sized devices (e.g., landscape phones, small tablets) */
+@media (max-width: 767px) {
+    .login-form-container {
+        /* Medium top and bottom margins for medium-sized devices */
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
+
+/* Responsive styles for smaller devices (e.g., portrait phones) */
+@media (max-width: 480px) {
+    .login-form-container {
+        /* Smaller top and bottom margins for smaller devices */
+        margin-top: 75 px;
+        margin-bottom: 75px;
+    }
+}
+
+
+.login-form {
+    font-size: 1rem; /* Use rem for scalability */
+    background-color: white;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Start with full width */
+    max-width: 500px; /* Max width for larger devices */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border: 1px solid #ccc;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form .form-group label {
+    color : #666666;
+    font-size : 0.9375rem; /* 15px in rem */
+    padding: 5px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.login-form button {
+    width: 100%;
+    margin-top:20px;
+    padding: 15px;
+    border-radius: 32px;
+    border: none;
+    background-color: #BBBBBB;
+    color: white;
+    cursor: pointer;
+}
+
+.signup-text {
+    text-align: left;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.signup-text .signup-link {
+    color: #111111;
+    text-decoration: underline;
+}
+
+.signup-text .text {
+    color: #666666; /* Regular text color */
+    text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .login-form {
+        font-size: 0.875rem; /* Smaller font size on small devices */
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .login-form .form-group label {
+        font-size: 0.875rem; /* Smaller label size on small devices */
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .login-form button {
+        padding: 12px;
+        border-radius: 24px;
+    }
+
+    .signup-text .signup-link {
+        margin-left: 2px; /* Adjust alignment on small devices */
+    }
+}
+
+/* Further Responsive Styles for even smaller devices */
+@media (max-width: 360px) {
+    .login-form {
+        padding: 10px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    .login-form button {
+        padding: 10px;
+    }
+}
+.signup-text {
+    margin-bottom:25px;
+    margin-top:25px;
+    font-size:16px;
+}

@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateToken } = require('./auth');
+const Session = require('../../models/cookies');
+const jwt = require('jsonwebtoken');
 const loginUser = require('./login');
+const cors = require('cors');
 const { checkEmail, generateAndStoreOTP, sendOTP, addNewUser } = require('./newUserReg');
 
 // Middleware to parse JSON bodies
 router.use(express.json());
-
+// router.use(cors());
 // Middleware for CORS if needed
-const cors = require('cors');
-router.use(cors());
+// CORS options
+const corsOptions = {
+    origin: 'http://localhost:3000', // Set to match the requesting origin
+    credentials: true, // Required to include credentials like cookies
+};
+
+// Apply CORS middleware with the specified options
+router.use(cors(corsOptions));
+// router.use(cors());
 
 // Route to handle user login
 router.post('/login', loginUser);
@@ -57,9 +67,37 @@ router.post('/add-new-user', async (req, res) => {
 });
 
 // Route to authenticate token and get user details
-router.post('/authenticate', authenticateToken, (req, res) => {
+router.get('/authenticate', authenticateToken, (req, res) => {
     // If middleware passes, user is authenticated
     res.json({ email: req.user.email, isAdmin: req.user.isAdmin });
 });
+
+router.put('/logout', async (req, res) => {
+    // Get the token from the cookies
+    const token = req.cookies['token'];
+    // If no token is found in the cookies, return an error
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided, unable to logout' });
+    }
+
+    try {
+        // Delete the token record directly from the database
+        await Session.deleteOne({ token: token });
+        
+        // Clear all cookies in the client. Adjust according to your needs.
+        // Assuming the names of all possible cookies are known and are 'token', 'session_id', etc.
+        res.clearCookie('token'); // Example for 'token'. Repeat for other cookies as necessary.
+        // For example, if there are more cookies:
+        // res.clearCookie('session_id');
+        // res.clearCookie('another_cookie_name');
+        
+        // Return a success message
+        res.json({ message: 'Logged out successfully and cookies cleared' });
+    } catch (error) {
+        console.error('Error during logout:', error);
+        res.status(500).json({ message: 'Error clearing cookies and logging out' });
+    }
+});
+
 
 module.exports = router;
