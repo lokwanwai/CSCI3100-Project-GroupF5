@@ -1,10 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-.otp-group {
-    display: flex;
-    align-items: center; /* Centers children vertically in the container */
-    justify-content: space-between; /* Spaces out the children horizontally */
-    margin-bottom: 40px;
-    height: 100%; /* Ensure the container takes up the required height */
+
+#text{
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+#root > div > div > div > form > div.form-group.otp-group > button{
+    width: 100%;
+    padding: 15px;
+    border-radius: 32px;
+
+    border: none;
+    background-color: #BBBBBB;
+    color: white;
+    cursor: pointer;
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 .otp-group input[type="text"] {
@@ -14,9 +26,11 @@
 }
 
 
+
 .otp-button {
     width: 1000%; /* Adjust this to match your design, keeping in mind this determines the button's width relative to the container */
     /* Styling for the button */
+    margin-top:-30px;
     border-radius: 12px;
     border: none;
     background-color: #BBBBBB;
@@ -25,7 +39,6 @@
     /* Uncomment or adjust the padding to ensure the button's size is appropriate and aligns well with the input */
     /* padding: 10px; */
 }
-
 
 
 body, html {
@@ -44,7 +57,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Ensures it takes the full width of its parent */
+    width: 450px;
 }
 
 .login-form {
@@ -70,8 +83,20 @@ body, html {
     padding: 5px;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.login-form input[type="number"],
 .login-form input[type="text"],
 .login-form input[type="password"] {
+
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -81,7 +106,7 @@ body, html {
 
 .login-form button {
     width: 100%;
-    margin-top:20px;
+    margin-top:10px;
     padding: 15px;
     border-radius: 32px;
     border: none;
@@ -133,3 +158,14 @@ label {
 }
 
 
+.password-criteria p {
+    margin-left:20px;
+    margin: top 0;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.criteria-met {
+    color: green;
+}

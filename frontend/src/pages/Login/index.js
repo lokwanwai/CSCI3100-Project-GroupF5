@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import './style.css';
 
 // import React, { Component } from 'react';
@@ -16,7 +16,11 @@ function NavigateAfterLogin({ isAdmin }) {
   const navigate = useNavigate();
   React.useEffect(() => {
     const path = isAdmin ? "/admin" : "/";
-    navigate(path);
+
+    // navigate(path);
+    setTimeout(() => {
+      navigate(path);
+  }, 3000);
   }, [isAdmin, navigate]);
 
   return null; // This component does not render anything
@@ -60,7 +64,8 @@ class SignIn extends Component {
         const data = await response.json();
         
         if (response.status === 200) {
-          toast.success('Logged in successfully');
+          toast.success('Logged in successfully.');
+          toast.success('Redirecting....');
           // Update state based on login response
           this.setState({
             loginSuccess: true,
@@ -105,79 +110,21 @@ class SignIn extends Component {
               />
             </div>
             <button type="submit">Sign in</button>
+            <div className="registration-prompt">
+              <span style={{ fontSize: '1rem', color: '#666666' }}>Don't have an account?</span> <a href="/register" style={{ textDecoration: 'underline' }}>Register</a>
+            </div>
           </form>
+          
         </div>
         {/* Conditionally render NavigateAfterLogin based on login success */}
         {loginSuccess && <NavigateAfterLogin isAdmin={isAdmin} />}
+        <div className="registration-prompt">
+         
+        </div>
       </div>
     );
   }
 }
-// class SignIn extends Component {
-//     constructor(props) {
-//       super(props);
-//       this.state = {
-//         username: '',
-//         password: ''
-//       };
-//     }
-  
-//     handleInputChange = (event) => {
-//       const { name, value } = event.target;
-//       this.setState({ [name]: value });
-//     }
-  
-//     handleSubmit = (event) => {
-//       event.preventDefault();
-//       // Handle sign-in logic here
-//       console.log('Username: ', this.state.username);
-//       console.log('Password: ', this.state.password);
-//     }
-  
-//     render() {
-//       return (
-//         <div>
-
-  
-//           <div className="login-form-container">
-//             <form className="login-form" onSubmit={this.handleSubmit}>
-//               <h2>Sign in</h2>
-//               <div className="form-group">
-//                 <label htmlFor="username">Registered Email</label>
-//                 <input
-//                   id="username"
-//                   type="text"
-//                   name="username"
-//                 //   placeholder="Enter your username"
-//                   value={this.state.username}
-//                   onChange={this.handleInputChange}
-//                   required
-//                 />
-//               </div>
-//               <div className="form-group">
-//                 <label htmlFor="password">Password</label>
-//                 <input
-//                   id="password"
-//                   type="password"
-//                   name="password"
-//                 //   placeholder="Enter your password"
-//                   value={this.state.password}
-//                   onChange={this.handleInputChange}
-//                   required
-//                 />
-//               </div>
-//               <button type="submit">Sign in</button>
-//               <div className="signup-text">
-//               <span className="text">Don’t have an account?  </span><a href="/registerS" className="signup-link">Sign Up</a>
-//             </div>
-//             </form>
-//           </div>
-  
-
-//         </div>
-//       );
-//     }
-//   }
 
 
 const Login = () => {
