@@ -1,6 +1,6 @@
 const path = require('path');
 const Session = require('../../models/cookies');
-require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, 'config.config') });
 const jwt = require('jsonwebtoken');
 
 // const Session = require('./cookies');

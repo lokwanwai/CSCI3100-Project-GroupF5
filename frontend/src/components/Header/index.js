@@ -4,7 +4,8 @@ import './style.css';
 
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+    const [userRole, setUserRole] = useState(null); // New state variable for storing user role
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:5001/api/auth/authenticate', {
@@ -12,13 +13,17 @@ const Header = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: 'include', // Ensure cookies are included in the request
+            credentials: 'include',
         })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Token validation failed');
             }
+            return response.json(); // Assuming the response contains the user's role
+        })
+        .then(data => {
             setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
+            setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
         })
         .catch(error => {
             console.error('Error:', error);
@@ -29,13 +34,14 @@ const Header = () => {
     const handleLogout = () => {
         fetch('http://localhost:5001/api/auth/logout', {
             method: 'PUT',
-            credentials: 'include', // Ensure cookies, including auth tokens, are included in the request
+            credentials: 'include',
         })
         .then(response => {
             if (response.ok) {
-                setIsLoggedIn(false); // Update state to reflect the user is not logged in
-                navigate('/'); // Use navigate to redirect to home page
-                window.location.reload(); // Reload the page to ensure state is reset across the application
+                setIsLoggedIn(false);
+                setUserRole(null); // Reset user role on logout
+                navigate('/');
+                window.location.reload();
             } else {
                 throw new Error('Logout failed');
             }
@@ -47,25 +53,24 @@ const Header = () => {
 
     return (
         <header className="header">
-            header from components/Header/index.js
             <nav>
                 <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
+                    <li><Link to="/">Home</Link></li>
                     {isLoggedIn ? (
-                        <li onClick={handleLogout}>Logout</li> // When logged in, show Logout and attach logout function
-                    ) : (
                         <>
-                            <li>
-                                <Link to="/login">Login</Link>
-                            </li>
-                            <li>
-                                <Link to="/register">Register</Link>
-                            </li>
+                            {userRole === 'user' && (
+                                <li><Link to="/profile">Profile</Link></li>
+                            )}
+                            <li onClick={handleLogout}>Logout</li>
                         </>
+                    ) : (
+                        userRole === null && ( // Only show Register when no user is logged in
+                            <>
+                                <li><Link to="/login">Login</Link></li>
+                                <li><Link to="/register">Register</Link></li>
+                            </>
+                        )
                     )}
-                    {/* Add more navigation items */}
                 </ul>
             </nav>
         </header>

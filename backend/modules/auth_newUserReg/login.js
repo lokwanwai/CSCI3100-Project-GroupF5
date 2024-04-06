@@ -4,7 +4,7 @@ const Session = require('../../models/cookies');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, 'config.config') });
 
 // Define the login function
 async function loginUser(req, res) {
