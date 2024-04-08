@@ -1,0 +1,70 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
+    const { id, name, price, quantity, stock, selected } = item;
+
+    return (
+        <tr className="cart-item">
+            <td className="align-middle" style={{ paddingLeft: '20px', width: '30px' }}>
+                <input
+                    type="checkbox"
+                    checked={selected}
+                    onChange={() => onSelect(id)}
+                    disabled={quantity > stock}
+                />
+            </td>
+            <td className="align-middle product-name">
+                <div className="d-flex align-items-center">
+                    <img
+                        src={`/images/${id}.jpg`}
+                        alt={name}
+                        style={{ width: 'auto', height: '80%', marginRight: '10px' }}
+                        className="d-none d-sm-block"
+                    />
+                    <Link
+                        to={`/product/id=${id}`}
+                        style={{ color: 'black', fontWeight: 'bold', textDecoration: 'none' }}
+                    >
+                        {name}
+                    </Link>
+                </div>
+            </td>
+            <td className="align-middle product-price">${price.toFixed(2)}</td>
+            <td className="align-middle product-quantity">
+                {quantity > stock ? (
+                    <span style={{ color: 'red', fontWeight: 'bold', fontStyle: 'italic' }}>
+                        Sold Out
+                    </span>
+                ) : (
+                    <input
+                        type="number"
+                        min="1"
+                        max={stock}
+                        value={quantity}
+                        onChange={(e) => onQuantityChange(id, parseInt(e.target.value))}
+                        className="form-control form-control-sm"
+                        style={{ width: '60px' }}
+                    />
+                )}
+            </td>
+            <td className="align-middle product-total">${(price * quantity).toFixed(2)}</td>
+            <td className="align-middle product-remove">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="red"
+                    className="bi bi-trash"
+                    viewBox="0 0 16 16"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => onRemove(id)}
+                >
+                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                </svg>
+            </td>
+        </tr>
+    );
+};
+
+export default CartItem;
