@@ -1,6 +1,6 @@
 // pages/CheckOut/index.js
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import PersonalDetails from './PersonalDetails';
 import PaymentDetails from './PaymentDetails';
 import ShippingAddress from './ShippingAddress';
@@ -11,7 +11,6 @@ import './CheckOut.css';
 const CheckOut = () => {
     const location = useLocation();
     const { items } = location.state;
-    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -94,8 +93,8 @@ const CheckOut = () => {
         try {
             // Prepare the data to send to the backend API
             const orderData = {
+                userEmail,
                 items: items.map(item => ({
-                    userEmail: userEmail,
                     productId: item.id,
                     name: item.name,
                     price: item.price,
@@ -107,7 +106,7 @@ const CheckOut = () => {
             };
 
             // Send the data to the backend API for payment processing
-            const response = await fetch('/api/process-payment', {
+            const response = await fetch('http://localhost:5001/api/payment/process-payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -132,18 +131,25 @@ const CheckOut = () => {
         <>
             <Header />
             <div className="container checkout-container mt-3">
-                <h1>Complete your order</h1>
+                {paymentStatus === null && (
+                    <h1>Complete your order</h1>
+                )}
                 {paymentStatus === 'success' && (
-                    <div className="alert alert-success" role="alert">
-                        Payment processed successfully!
-                        <Link to="/Home" className="btn btn-primary ml-3">Back to Home</Link>
+                    <div className='h-100 d-flex align-items-center justify-content-center'>
+                        <div className="alert alert-success " role="alert">
+                            Payment processed successfully!
+                            <Link to="/" className="btn-rounded-sm btn-black mx-3">Back to Home</Link>
+                        </div>
                     </div>
+
                 )}
                 {paymentStatus === 'error' && (
-                    <div className="alert alert-danger" role="alert">
-                        Payment processing failed. Please try again.
-                        <br />
-                        <button className=" btn-rounded btn-black" onClick={() => setPaymentStatus(null)}>Try Again</button>
+                    <div className='h-100 d-flex align-items-center justify-content-center'>
+                        <div className="alert alert-danger" role="alert">
+                            Payment processing failed. Please try again.
+                            <br />
+                            <button className=" btn-rounded-sm btn-black mx-3" onClick={() => setPaymentStatus(null)}>Try Again</button>
+                        </div>
                     </div>
                 )}
                 {paymentStatus === null && (

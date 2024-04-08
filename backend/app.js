@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 // Import routes
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/CartRoutes');
+const paymentRoutes = require('./routes/PaymentRoutes');
 // Import the authNewUserReg router
 const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg');
 
@@ -37,6 +38,7 @@ app.use(cookieParser());
     // Mount the auth_newUserReg routes
     app.use('/api/auth', authNewUserRegRoutes); // This line includes all the authentication and user registration routes
     app.use('/api/cart', cartRoutes);
+    app.use('/api/payment', paymentRoutes);
 
     // Start the server
     const PORT = process.env.PORT || 5001;

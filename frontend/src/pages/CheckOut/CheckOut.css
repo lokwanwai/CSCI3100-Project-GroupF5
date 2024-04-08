@@ -60,6 +60,13 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
+.btn-rounded-sm {
+    border-radius: 40px;
+    padding: 3px 12px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
 .btn-white {
     background-color: white;
     color: black;
