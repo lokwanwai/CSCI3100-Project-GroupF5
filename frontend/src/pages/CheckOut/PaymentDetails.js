@@ -1,7 +1,7 @@
 // pages/CheckOut/PaymentDetails.js
 import React from 'react';
 
-const PaymentDetails = () => {
+const PaymentDetails = ({ formData, handleInputChange }) => {
     return (
         <div className='mt-4'>
             <h2>Payment Details</h2>
@@ -13,13 +13,27 @@ const PaymentDetails = () => {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label className="form-label">Card Holder Name</label>
-                        <input type="text" className="form-control" />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cardHolderName"
+                            value={formData.cardHolderName}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="form-group">
                         <label className="form-label">Card Number</label>
-                        <input type="text" className="form-control" />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cardNumber"
+                            value={formData.cardNumber}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </div>
                 </div>
             </div>
