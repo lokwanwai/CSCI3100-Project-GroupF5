@@ -1,8 +1,7 @@
-_id,productName,productPrice,productDescription,__v
-660f6c4234304d6269d4be9e,dummy2@testing.com,DummyUser2,someHashedPasswordHere,0
-660f6c4234304d6269d4be9d,dummy1@testing.com,DummyUser1,someHashedPasswordHere,0
-660f6c4234304d6269d4bea0,admin1@testing.com,AdminUser1,anotherHashedPasswordHere,0
-660f6c4234304d6269d4be9f,admin@testing.com,AdminUser,anotherHashedPasswordHere,0
-660f6c7734304d6269d4beaa,anthony@chiho.work,Anthony Y,$2a$10$373Z.7/zmesGSzxWwa2ONO8bO1c.SmI0cn3p6Fwu7Rnr2BkZCb/1G,0
-660fdcf753fd739adbd22ca0,user,User Dev,$2a$10$qVzdrTtvHfLm.On4LQKanOWXBX/KcV/4vEcmCWInO1npqNXhdit3q,0
-660fdcfc53fd739adbd22ca4,admin,Admin Dev,$2a$10$rZ9b4gui4wU1tNwRZBkszeCHPFoO4n1DsM03VyAk1hQca0H2oMUQG,,0
+﻿_id,productName,productPrice,productDescription
+403e40b6bb0abb8146f6de83 ,ProductA,$100,Description A
+403e4e9aafc21262bb5893c3,ProductB,$110,Description B
+403e4272930a38729c3f0dad,ProductC,$120,Description C
+403e451598306073c91eb057,ProductD,$130,Description D
+403e42e6927ef571207ef85f,ProductE,$140,Description E
+403e4eeabf6afc5e26fa12bb,ProductF,$150,Description F
