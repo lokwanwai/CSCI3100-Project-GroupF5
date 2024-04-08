@@ -9,30 +9,68 @@ import Footer from '../../components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ShoppingCart.css';
 
-
+/*
+ * I finished my part(frontend, backend), but i need to have connection with other backend part(productDatabase, detailPage)
+ * TODO:
+ * 1. Wait for the productDatabase API to query image data/product Name/price.
+ *    - Once the API is available, fetch the image data for each cart item and display it in the cart.
+ *    - Update the cart item rendering logic to include the image.
+ *
+ * 2. Wait for the detailPage to create items into the cart database.
+ *    - Ensure that the detailPage properly creates cart items when a user adds a product to the cart.
+ *    - If necessary, update the cart database schema to include additional columns/data required by the detailPage.
+ *      - Modify the backend API and frontend code accordingly to handle the updated schema.
+ */
 
 const ShoppingCart = () => {
     const [items, setItems] = useState([]);
-    const userId = 1;
 
-    // Fetch cart items from the server
+
+    const [userEmail, setUserEmail] = useState('');
+
+    useEffect(() => {
+        // Since the token is stored in cookies, we include credentials in our fetch request.
+        // The browser will automatically handle sending the appropriate cookies.
+        fetch('http://localhost:5001/api/auth/authenticate', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include', // Ensure cookies, including auth tokens, are included in the request
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Token validation failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setUserEmail(data.email); // Set user email if token is valid
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }, []); // The effect runs once after the component mounts
+
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/cart/?user=${userId}`);
+                const response = await axios.get(`http://localhost:5001/api/cart/?user=${userEmail}`);
                 setItems(response.data);
             } catch (error) {
                 console.error('Error fetching cart items:', error);
             }
         };
-        fetchCartItems();
-    }, [userId]);
-
+        if (userEmail) {
+            fetchCartItems();
+        }
+    }, [userEmail]);
 
     const handleQuantityChange = (itemId, newQuantity) => {
         const updatedItems = items.map((item) => {
             if (item.id === itemId) {
-                const updatedQuantity = Math.max(1, Math.min(newQuantity, item.stock));
+                let updatedQuantity = Math.max(1, Math.min(newQuantity, item.stock));
+                // if (isNaN(updatedQuantity)) updatedQuantity = 1;
                 return { ...item, quantity: updatedQuantity };
             }
             return item;
@@ -40,9 +78,13 @@ const ShoppingCart = () => {
         setItems(updatedItems);
     };
 
-    const handleRemoveItem = (itemId) => {
-        const updatedItems = items.filter((item) => item.id !== itemId);
-        setItems(updatedItems);
+    const handleRemoveItem = async (itemId) => {
+        try {
+            await axios.delete(`http://localhost:5001/api/cart/remove-item/${itemId}`, { data: { userEmail } });
+            setItems(items.filter((item) => item.id !== itemId));
+        } catch (error) {
+            console.error('Error removing item from the cart:', error);
+        }
     };
 
     const handleSelectItem = (itemId) => {

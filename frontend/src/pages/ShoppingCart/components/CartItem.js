@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
     const { id, name, price, quantity, stock, selected } = item;
 
+    const handleQuantityChange = (itemId, newQuantity) => {
+        if (newQuantity >= 1 && newQuantity <= stock) {
+            onQuantityChange(itemId, newQuantity);
+        }
+    };
+
     return (
         <tr className="cart-item">
             <td className="align-middle" style={{ paddingLeft: '20px', width: '30px' }}>
@@ -37,15 +43,25 @@ const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
                         Sold Out
                     </span>
                 ) : (
-                    <input
-                        type="number"
-                        min="1"
-                        max={stock}
-                        value={quantity}
-                        onChange={(e) => onQuantityChange(id, parseInt(e.target.value))}
-                        className="form-control form-control-sm"
-                        style={{ width: '60px' }}
-                    />
+                    <div className="d-flex align-items-center">
+                        <button
+                            className="btn btn-outline-secondary btn-sm"
+                            type="button"
+                            onClick={() => handleQuantityChange(id, quantity - 1)}
+                            disabled={quantity <= 1}
+                        >
+                            -
+                        </button>
+                        <span className="mx-3">{quantity}</span>
+                        <button
+                            className="btn btn-outline-secondary btn-sm"
+                            type="button"
+                            onClick={() => handleQuantityChange(id, quantity + 1)}
+                            disabled={quantity >= stock}
+                        >
+                            +
+                        </button>
+                    </div>
                 )}
             </td>
             <td className="align-middle product-total">${(price * quantity).toFixed(2)}</td>
