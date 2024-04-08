@@ -1,0 +1,28 @@
+.shopping-cart {
+  font-family: 'Poppins',;
+}
+
+.shopping-cart h2 {
+  font-size: 18px;
+  color: #111111;
+}
+
+.shopping-cart table th {
+  font-size: 18px;
+  color: #333333;
+}
+
+.shopping-cart .cart-item {
+  font-size: 16px;
+  color: #666666;
+}
+
+/* .shopping-cart .cart-total {
+  font-size: 18px;
+  color: #555555;
+} */
+
+.shopping-cart .payment-button {
+  font-size: 18px;
+  color: #ffffff;
+}

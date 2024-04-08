@@ -15,20 +15,20 @@ const Header = () => {
             },
             credentials: 'include',
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Token validation failed');
-            }
-            return response.json(); // Assuming the response contains the user's role
-        })
-        .then(data => {
-            setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
-            setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setIsLoggedIn(false);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Token validation failed');
+                }
+                return response.json(); // Assuming the response contains the user's role
+            })
+            .then(data => {
+                setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
+                setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setIsLoggedIn(false);
+            });
     }, []);
 
     const handleLogout = () => {
@@ -36,19 +36,19 @@ const Header = () => {
             method: 'PUT',
             credentials: 'include',
         })
-        .then(response => {
-            if (response.ok) {
-                setIsLoggedIn(false);
-                setUserRole(null); // Reset user role on logout
-                navigate('/');
-                window.location.reload();
-            } else {
-                throw new Error('Logout failed');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    setIsLoggedIn(false);
+                    setUserRole(null); // Reset user role on logout
+                    navigate('/');
+                    window.location.reload();
+                } else {
+                    throw new Error('Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -61,6 +61,7 @@ const Header = () => {
                             {userRole === 'user' && (
                                 <li><Link to="/profile">Profile</Link></li>
                             )}
+                            <li><Link to="/cart">cart</Link></li>
                             <li onClick={handleLogout}>Logout</li>
                         </>
                     ) : (

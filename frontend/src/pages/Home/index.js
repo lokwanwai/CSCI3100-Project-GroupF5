@@ -16,18 +16,18 @@ const Home = () => {
             },
             credentials: 'include', // Ensure cookies, including auth tokens, are included in the request
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Token validation failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            setUserEmail(data.email); // Set user email if token is valid
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Token validation failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setUserEmail(data.email); // Set user email if token is valid
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }, []); // The effect runs once after the component mounts
 
     return (

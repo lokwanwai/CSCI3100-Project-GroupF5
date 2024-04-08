@@ -4,8 +4,10 @@ const { connectDB, initDB } = require('./modules/dbInit/dbInit');
 const cookieParser = require('cookie-parser');
 // Import routes
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/CartRoutes');
 // Import the authNewUserReg router
 const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg');
+
 
 const app = express();
 
@@ -34,6 +36,7 @@ app.use(cookieParser());
 
     // Mount the auth_newUserReg routes
     app.use('/api/auth', authNewUserRegRoutes); // This line includes all the authentication and user registration routes
+    app.use('/api/cart', cartRoutes);
 
     // Start the server
     const PORT = process.env.PORT || 5001;
