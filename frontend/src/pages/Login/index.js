@@ -2,43 +2,33 @@ import React, { Component } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom';
-import './style.css';
-
-// import React, { Component } from 'react';
-// import { withRouter } from 'react-router-dom'; // Import withRouter
+import './loginStyle.css'; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function NavigateAfterLogin({ isAdmin }) {
-
-
   const navigate = useNavigate();
   React.useEffect(() => {
     const path = isAdmin ? "/admin" : "/";
-
-    // navigate(path);
     setTimeout(() => {
       navigate(path);
-  }, 3000);
+    }, 3000);
   }, [isAdmin, navigate]);
 
   return null; // This component does not render anything
 }
 
-
-// import './SignIn.css'; // Assume you have a CSS file named SignIn.css
 class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      loginSuccess: false, // Indicates if login was successful
-      isAdmin: false, // Indicates if the user is an admin
+      loginSuccess: false,
+      isAdmin: false,
     };
   }
-  
+
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -58,7 +48,7 @@ class SignIn extends Component {
             email: username,
             password: password
           }),
-          credentials: 'include', // Include credentials in the request
+          credentials: 'include',
         });
   
         const data = await response.json();
@@ -66,10 +56,9 @@ class SignIn extends Component {
         if (response.status === 200) {
           toast.success('Logged in successfully.');
           toast.success('Redirecting....');
-          // Update state based on login response
           this.setState({
             loginSuccess: true,
-            isAdmin: data.isAdmin, // Use the isAdmin flag from the response
+            isAdmin: data.isAdmin,
           });
         } else {
           toast.error(data.message || 'Login failed');
@@ -84,52 +73,48 @@ class SignIn extends Component {
     return (
       <div>
         <ToastContainer />
-        <div className="login-form-container">
-          <form className="login-form" onSubmit={this.handleSubmit}>
+        <div className="unique-login-form-container">
+          <form className="unique-login-form" onSubmit={this.handleSubmit}>
             <h2>Sign in</h2>
-            <div className="form-group">
+            <div className="unique-form-group">
               <label htmlFor="username">Registered Email</label>
               <input
                 id="username"
                 type="text"
                 name="username"
+                className="unique-input" // Added class for input
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 required
               />
             </div>
-            <div className="form-group">
+            <div className="unique-form-group">
               <label htmlFor="password">Password</label>
               <input
                 id="password"
                 type="password"
                 name="password"
+                className="unique-input" // Added class for input
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 required
               />
             </div>
-            <button type="submit">Sign in</button>
-            <div className="registration-prompt">
-              <span style={{ fontSize: '1rem', color: '#666666' }}>Don't have an account?</span> <a href="/register" style={{ textDecoration: 'underline' }}>Register</a>
+            <button type="submit" className="unique-submit-button">Sign in</button> {/* Added class for button */}
+            <div className="unique-registration-prompt">
+              <span className="unique-text">Don't have an account?</span> <a href="/register" className="unique-link">Register</a>
             </div>
           </form>
-          
         </div>
-        {/* Conditionally render NavigateAfterLogin based on login success */}
         {loginSuccess && <NavigateAfterLogin isAdmin={isAdmin} />}
-        <div className="registration-prompt">
-         
-        </div>
       </div>
     );
   }
 }
 
-
 const Login = () => {
     return (
-        <div className="Login">
+        <div className="unique-login-page">
             <Header />
             <SignIn />
             <Footer />

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.unique-login-page, .unique-login-form-container, .unique-login-form, .unique-form-group, .unique-input, .unique-submit-button, .unique-registration-prompt, .unique-text, .unique-link {
+    font-family: 'Poppins', sans-serif;
+}
+
+.unique-login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+@media (min-width: 768px) {
+    .unique-login-form-container {
+        margin-top: 150px;
+        margin-bottom: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .unique-login-form-container {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .unique-login-form-container {
+        margin-top: 75px;
+        margin-bottom: 75px;
+    }
+}
+
+.unique-login-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    border: 1px solid #ccc;
+}
+
+.unique-login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.unique-form-group label {
+    color: #666666;
+    padding: 5px;
+}
+
+.unique-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.unique-submit-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 32px;
+    margin-bottom: 20px;;
+    border: none;
+    background-color: #BBBBBB;
+    color: white;
+    cursor: pointer;
+}
+
+.unique-registration-prompt .unique-text {
+    font-size: 1rem;
+    color: #666666;
+}
+
+.unique-link {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .unique-login-form {
+        font-size: 0.875rem;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .unique-input, .unique-submit-button {
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .unique-submit-button {
+        padding: 12px;
+        border-radius: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .unique-login-form {
+        padding: 10px;
+    }
+
+    .unique-input, .unique-submit-button {
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    .unique-submit-button {
+        padding: 10px;
+    }
+}

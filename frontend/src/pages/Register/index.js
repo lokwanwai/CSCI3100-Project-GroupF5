@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import './style.css';
+import './registerStyle.css'; // Change the CSS file name for uniqueness
 
 class RegisterInner extends Component {
     intervalId = null;
@@ -61,7 +61,6 @@ class RegisterInner extends Component {
                     toast.success('OTP sent successfully. Please check your email.');
                 })
                 .catch(error => {
-                    // Reset countdown and button state if there's an error
                     if (this.intervalId) {
                         clearInterval(this.intervalId);
                         this.setState({ otpButtonDisabled: false, otpCountdown: 0 });
@@ -125,27 +124,28 @@ class RegisterInner extends Component {
         const { email, otp, name, password, confirmPassword, otpButtonDisabled, otpCountdown } = this.state;
 
         return (
-            <div className="Register">
+            <div className="unique-register-container">
                 <ToastContainer />
                 <Header />
-                <div className="login-form-container">
-                    <form className="login-form" onSubmit={this.handleSubmit}>
+                <div className="unique-form-container">
+                    <form className="unique-register-form" onSubmit={this.handleSubmit}>
                         <h2>Register</h2>
-                        <div className="form-group">
+                        <div className="unique-form-group">
                             <label htmlFor="email">Email Address</label>
                             <input
                                 id="email"
                                 type="email"
                                 name="email"
+                                className="unique-input"
                                 value={email}
                                 onChange={this.handleInputChange}
                                 required
                             />
                         </div>
-                        <div className="form-group otp-group">
+                        <div className="unique-form-group unique-otp-group">
                             <button
                                 type="button"
-                                className="otp-button"
+                                className="unique-otp-button"
                                 onClick={this.handleSendOTP}
                                 disabled={otpButtonDisabled}
                             >
@@ -155,46 +155,53 @@ class RegisterInner extends Component {
                                 id="otp"
                                 type="number"
                                 name="otp"
+                                className="unique-input"
                                 placeholder="Enter OTP"
                                 value={otp}
                                 onChange={this.handleInputChange}
                                 required
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="unique-form-group">
                             <label htmlFor="name">Full Name</label>
                             <input
                                 id="name"
                                 type="text"
                                 name="name"
+                                className="unique-input"
                                 value={name}
                                 onChange={this.handleInputChange}
                                 required
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="unique-form-group">
                             <label htmlFor="password">Password</label>
                             <input
                                 id="password"
                                 type="password"
                                 name="password"
+                                className="unique-input"
                                 value={password}
                                 onChange={this.handleInputChange}
                                 required
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="unique-form-group">
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input
                                 id="confirmPassword"
                                 type="password"
                                 name="confirmPassword"
+                                className="unique-input"
                                 value={confirmPassword}
                                 onChange={this.handleInputChange}
                                 required
                             />
                         </div>
-                        <button type="submit">Register</button>
+                        <button type="submit" className="unique-register-submit">Register</button>
+                        <div className="unique-login-prompt">
+                        <span className="unique-text">Already have an account?</span> <a href="/login" className="unique-link">Sign In</a>
+                        </div>
                     </form>
                 </div>
                 <Footer />
