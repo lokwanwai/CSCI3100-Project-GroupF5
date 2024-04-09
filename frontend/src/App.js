@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ShoppingCart from './pages/ShoppingCart';
+import Search from './pages/Search';
 import CheckOut from './pages/CheckOut';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={< ShoppingCart />} />
+          <Route path="/search" element={< Search />} />
 
           <Route path="/checkout" element={<CheckOut />} />
           {/* <Route path="/admin" element={<Admin />} /> */}

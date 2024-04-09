@@ -32,7 +32,7 @@ app.use(cookieParser());
     await initDB();
 
     // // Mount routes after DB initialization
-    // app.use('/api/products', productRoutes);
+    app.use('/api/products', productRoutes);
 
 
     // Mount the auth_newUserReg routes
