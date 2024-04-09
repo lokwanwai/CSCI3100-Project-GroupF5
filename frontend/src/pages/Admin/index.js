@@ -3,11 +3,13 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import UserItem from './UserItem';
 
 const Admin = () => {
     const [users, setUsers] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const [userEmail, setUserEmail] = useState('');
 
@@ -40,12 +42,25 @@ const Admin = () => {
             try {
                 const response = await axios.get(`http://localhost:5001/api/users`);
                 setUsers(response.data);
-                console.log(response);
+                //console.log(response);
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
         };
         fetchUsers();
+    }, []);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/products`);
+                setProducts(response.data);
+                //console.log(response);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchProducts();
     }, []);
 
     const handleDeleteUsers = async (userId) => {
@@ -64,7 +79,7 @@ const Admin = () => {
                 <h1>Admin Panel</h1>
                 {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
                 <h2>User List</h2>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Username</th>
@@ -77,6 +92,25 @@ const Admin = () => {
                                 key={user._id} 
                                 user={user}
                                 onDelete={handleDeleteUsers}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+                <h2>Product List</h2>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Product Image</th>
+                            <th>Product Storage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map(product => (
+                            <UserItem 
+                                key={product._id} 
+                                product={product}
                             />
                         ))}
                     </tbody>
