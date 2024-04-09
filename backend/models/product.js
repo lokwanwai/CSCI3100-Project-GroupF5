@@ -18,6 +18,10 @@ const ProductSchema = new mongoose.Schema({
         type: String
         default: "NoImage"
     },
+    productStorage: { 
+        type: String, 
+        required: true 
+    },
 });
 
 module.exports = mongoose.model('Product', ProductSchema);
