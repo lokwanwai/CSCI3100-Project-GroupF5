@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
 
+import UserItem from './UserItem';
+
 const Admin = () => {
+    const [users, setUsers] = useState([]);
+
     const [userEmail, setUserEmail] = useState('');
 
     useEffect(() => {
@@ -30,12 +35,52 @@ const Admin = () => {
             });
     }, []); // The effect runs once after the component mounts
 
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/users`);
+                setUsers(response.data);
+                console.log(response);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        fetchUsers();
+    }, []);
+
+    const handleDeleteUsers = async (userId) => {
+        try {
+            await axios.delete(`http://localhost:5001/api/users/delete-user/${userId}`);
+            setUsers(users.filter((item) => item.id !== userId));
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    };
+
     return (
         <div className="admin">
             <Header />
             <main>
                 <h1>Admin Panel</h1>
                 {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                <h2>User List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <UserItem 
+                                key={user._id} 
+                                user={user}
+                                onDelete={handleDeleteUsers}
+                            />
+                        ))}
+                    </tbody>
+                </table>
             </main>
             <Footer />
         </div>
