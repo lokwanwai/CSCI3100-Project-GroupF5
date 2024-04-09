@@ -6,10 +6,10 @@ This is the README file for the My E-commerce Website project. It provides instr
 
 
 ## Completed features (Needed to be checked after merging)
--Login & logout
--New user registration
--Shopping Cart(exp connection with Product API, for fetching prod. details and image)
--Payment(exp connection with Product API, for change stock qty)
+-Login & logout\
+-New user registration\
+-Shopping Cart(exp connection with Product API, for fetching prod. details and image)\
+-Payment(exp connection with Product API, for change stock qty)\
 
 ## Prerequisites
 
