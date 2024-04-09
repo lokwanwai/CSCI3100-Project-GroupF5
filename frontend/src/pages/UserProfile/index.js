@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
+import { ChangeProfilePasswordForm } from '../../components/library/change-profile-password-form/ChangeProfilePasswordForm';
 
 const User = () => {
     const [userEmail, setUserEmail] = useState('');
@@ -39,6 +40,7 @@ const User = () => {
                 {userEmail && <p>User Email: {userEmail}</p>}
                 <li><Link to="/cart">My Cart</Link></li>
                 <li><Link to="/order">My order</Link></li>
+                <ChangeProfilePasswordForm/>
             </main>
             <Footer />
         </div>
