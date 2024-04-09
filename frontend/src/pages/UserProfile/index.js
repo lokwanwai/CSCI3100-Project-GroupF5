@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
-import { ChangeUserPassword } from './ChangeUserPassword';
+import { ChangeEmail } from './ChangeEmail';
 
 const User = () => {
     const [userEmail, setUserEmail] = useState('');
