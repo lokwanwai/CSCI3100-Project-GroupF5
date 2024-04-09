@@ -3,6 +3,14 @@
 
 This is the README file for the My E-commerce Website project. It provides instructions on how to set up the project, install the necessary dependencies, and start the application.
 
+
+
+## Completed features (Needed to be checked after merging)
+-Login & logout
+-New user registration
+-Shopping Cart(exp connection with Product API, for fetching prod. details and image)
+-Payment(exp connection with Product API, for change stock qty)
+
 ## Prerequisites
 
 Before getting started, ensure that you have the following software installed on your system:
