@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
-import { ChangeProfilePasswordForm } from '../../components/library/change-profile-password-form/ChangeProfilePasswordForm';
+import { ChangeUserPassword } from './ChangeUserPassword';
 
 const User = () => {
     const [userEmail, setUserEmail] = useState('');
