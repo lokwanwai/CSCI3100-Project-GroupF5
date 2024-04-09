@@ -1,11 +1,11 @@
 const express = require("express");
-const Account = require("../model/user");
+const user = require("../model/user");
 const router = express.Router();
 
 // Update user profile
 router.patch("/profile/:userId", async (req, res) => {
   try {
-    await Account.updateOne(
+    await user.updateOne(
       { userId: req.params.userId },
       {
         $set: {
@@ -27,7 +27,7 @@ router.patch("/profile/:userId", async (req, res) => {
 // Update password of a user
 router.patch("/password/reset", async (req, res) => {
   try {
-    const user = await Account.findOne({
+    const user = await user.findOne({
       userId: req.body.userId,
     });
     if (!user) {
@@ -35,7 +35,7 @@ router.patch("/password/reset", async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    await Account.updateOne(
+    await user.updateOne(
       {
         userId: req.body.userId,
       },
@@ -52,7 +52,7 @@ router.patch("/password/reset", async (req, res) => {
 // Get all the users info
 router.get("/", async (req, res) => {
   try {
-    const list = await Account.find();
+    const list = await user.find();
     res.json(list);
   } catch (err) {
     res.json({ message: err });
