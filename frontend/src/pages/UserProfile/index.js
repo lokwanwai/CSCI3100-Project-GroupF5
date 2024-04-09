@@ -40,7 +40,7 @@ const User = () => {
                 {userEmail && <p>User Email: {userEmail}</p>}
                 <li><Link to="/cart">My Cart</Link></li>
                 <li><Link to="/order">My order</Link></li>
-                <ChangeProfilePasswordForm/>
+                <ChangeEmail/>
             </main>
             <Footer />
         </div>
