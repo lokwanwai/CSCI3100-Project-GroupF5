@@ -1,7 +1,7 @@
-﻿_id,productName,productPrice,productDescription,productStorage
-403e40b6bb0abb8146f6de83 ,ProductA,$100,Description A,100
-403e4e9aafc21262bb5893c3,ProductB,$110,Description B,50
-403e4272930a38729c3f0dad,ProductC,$120,Description C,30
-403e451598306073c91eb057,ProductD,$130,Description D,20
-403e42e6927ef571207ef85f,ProductE,$140,Description E,10
-403e4eeabf6afc5e26fa12bb,ProductF,$150,Description F,1
+﻿_id,productName,productPrice,productDescription,productStorage,productImage
+403e40b6bb0abb8146f6de83 ,ProductA,$100,Description A,100,A
+403e4e9aafc21262bb5893c3,ProductB,$110,Description B,50,B
+403e4272930a38729c3f0dad,ProductC,$120,Description C,30,C
+403e451598306073c91eb057,ProductD,$130,Description D,20,D
+403e42e6927ef571207ef85f,ProductE,$140,Description E,10,
+403e4eeabf6afc5e26fa12bb,ProductF,$150,Description F,1,
