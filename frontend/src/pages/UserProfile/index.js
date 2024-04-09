@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
@@ -36,7 +37,8 @@ const User = () => {
             <main>
                 <h1>User Profile</h1>
                 {userEmail && <p>User Email: {userEmail}</p>}
-                
+                <li><Link to="/cart">My Cart</Link></li>
+                <li><Link to="/order">My order</Link></li>
             </main>
             <Footer />
         </div>
