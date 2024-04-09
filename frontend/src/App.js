@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ShoppingCart from './pages/ShoppingCart';
 import CheckOut from './pages/CheckOut';
+import Admin from './pages/Admin';
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/cart" element={< ShoppingCart />} />
 
           <Route path="/checkout" element={<CheckOut />} />
-          {/* <Route path="/admin" element={<Admin />} /> */}
+          <Route path="/admin" element={<Admin />} />
           {/* Add more routes for other pages */}
         </Routes>
       </div>
