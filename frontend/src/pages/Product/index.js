@@ -2,6 +2,37 @@ import React, { Component } from "react";
 import "./style.css";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const AddToCart = async (req, res) => {
+  const { venueid, price, date, desc, price, presenter } = req.body
+
+  let newProducts = new CartItems({
+    userEmail,
+    productId,
+    name,
+    price,
+    quantity,
+    stock,
+  })
+  await newProducts.save()
+  res.status(201).json({})
+}
+
+function AddToCart({ userID }) {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    const path = isAdmin ? "/admin" : "/";
+    setTimeout(() => {
+      navigate(path);
+    }, 3000);
+  }, [isAdmin, navigate]);
+
+  return null; // This component does not render anything
+}
 
 class Product extends Component {
   constructor(props) {
@@ -42,7 +73,6 @@ class Product extends Component {
   render() {
     const { product, show } = this.state
     console.log(this.state.product.ownId);
-    let User = JSON.parse(localStorage.getItem('profile'));
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
@@ -55,14 +85,14 @@ class Product extends Component {
             <div id="description">description: {product.productDescription} </div>
             
             <div onSubmit={this.onSubmit}>
-              <Link onClick={e => (!User.result.displayName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${User.result.displayName}&room=${product.productName}`}>
+              <Link onClick=>
               <i className="fas fa-comments-dollar"></i>
               
               </Link>
             </div>
           </div>
 
-          <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
+          <img id="image" src={`/data/${product.productPhoto}`} alt="..."></img>
         </div>
       </div>
 
