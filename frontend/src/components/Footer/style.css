@@ -1,5 +1,5 @@
 .footer {
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #888888; /* Set your desired background color */
@@ -17,7 +17,7 @@
 
 /* Style the navigation list items */
 .footer-item {
-    margin: 2rem; /* Add spacing between list items */
+    margin: 1.5rem; /* Add spacing between list items */
     flex: 1;
 }
 
