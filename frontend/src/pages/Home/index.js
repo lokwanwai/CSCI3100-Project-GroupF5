@@ -51,6 +51,7 @@ const Home = () => {
         <div className="home">
             <Header />
             <main>
+
                 <h1>Welcome to SuperMall</h1>
                 {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
                 {/* Additional home page content here */}
@@ -67,6 +68,7 @@ const Home = () => {
                             </li>
                         ))}
                     </ul>
+
                 </div>
             </main>
             <Footer />

@@ -2,6 +2,22 @@ const express = require('express');
 const router = express.Router();
 const Cart = require('../models/cart');
 
+// Add a cart item
+router.delete('/add-item/:productId', async (req, res) => {
+    try {
+        const { productId } = req.params;
+        const { userEmail } = req.body;
+
+        // Add the cart item
+        await Cart.insertOne({ userEmail, productId });
+
+        res.json({ message: 'Item added to the cart successfully' });
+    } catch (error) {
+        console.error('Error adding item to the cart:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Remove a cart item
 router.delete('/remove-item/:productId', async (req, res) => {
     try {

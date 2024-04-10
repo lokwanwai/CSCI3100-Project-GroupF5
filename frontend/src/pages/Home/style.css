@@ -1,3 +1,4 @@
+
 main {
     align-items: center;
     text-align: center;
@@ -30,3 +31,4 @@ main {
     min-height: 100px; /* Adjust height as needed */
     aspect-ratio: 1 / 1; /* Make item square */
 }
+
