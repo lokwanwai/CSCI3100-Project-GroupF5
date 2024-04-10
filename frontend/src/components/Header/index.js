@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
+import logo from '../../images/logo.png';
 
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,6 +56,7 @@ const Header = () => {
         <header className="header">
             <nav>
                 <ul>
+                    <li><img className='logo' src={logo} alt='Logo'></img></li>
                     <li>SuperMall</li>
                     <li><Link to="/">Home</Link></li>
                     {isLoggedIn ? (

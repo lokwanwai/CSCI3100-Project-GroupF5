@@ -35,3 +35,9 @@
 .header a:hover {
     color: #ffcc00; /* Your desired hover color */
 }
+
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
