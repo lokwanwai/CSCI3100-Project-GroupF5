@@ -8,7 +8,7 @@ const UserItem = ({ user, onDelete }) => {
             <button
                 className="btn btn-outline-secondary btn-sm"
                 type="button"
-                onClick={() => onDelete(user._id)}
+                onClick={() => onDelete(user.userEmail)}
             >
                 Delete User
             </button>

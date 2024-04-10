@@ -72,3 +72,8 @@
   max-width: 200px;
   max-height: 200px;
 }
+
+.card a {
+  text-decoration: none;
+  color: #212529;
+}

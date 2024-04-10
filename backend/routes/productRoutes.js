@@ -116,6 +116,30 @@ router.get("/random", async (req, res) => {       //  get request: 'localhost:30
   }
 });
 
+router.delete('/delete-product/:productName', async (req, res) => {
+  try {
+      const { productName } = req.params;
+
+      const targetProduct = await Products.findOne({ productName });
+
+      console.log(productName);
+      console.log(targetProduct);
+
+      if (!targetProduct) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+
+      await Products.deleteOne({ productName });
+
+      res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+      console.error('Error removing product:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+
+});
+
+
 
 // Route: "api/products/getdetails"
 // Method: GET
