@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
 
 const Home = () => {
     const [userEmail, setUserEmail] = useState('');
+
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
@@ -30,14 +33,42 @@ const Home = () => {
             });
     }, []); // The effect runs once after the component mounts
 
+    useEffect(() => {
+        // Fetch random products from your backend API
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/products/random`);
+                setProducts(response.data);
+                //console.log(response);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
     return (
         <div className="home">
             <Header />
             <main>
-                <div className="content-wrap">
-                    <h1>Home Page from pages/Home</h1>
-                    {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
-                    {/* Additional home page content here */}
+
+                <h1>Welcome to SuperMall</h1>
+                {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                {/* Additional home page content here */}
+                <div className='feature-products'>
+                    <h2>Featured Products</h2>
+                    <ul className='product-list'>
+                        {products.map(product => (
+                            <li className='product-item' key={product._id}>
+                                {product.productPhoto}
+                                <br/>
+                                {product.productName} 
+                                <br/>
+                                {product.productPrice} 
+                            </li>
+                        ))}
+                    </ul>
+
                 </div>
             </main>
             <Footer />

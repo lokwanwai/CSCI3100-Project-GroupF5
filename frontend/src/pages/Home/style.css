@@ -1,9 +1,34 @@
-#home {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-#content-wrap {
-    padding-bottom: 3rem;    /* Footer height */
-  }
-  
+
+main {
+    align-items: center;
+    text-align: center;
+}
+
+/* Example CSS for a grid of product blocks */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    grid-gap: 10px;
+    list-style: none; /* Remove default list styling */
+    padding: 1rem;
+}
+
+.product-list {
+    display: flex;
+    border: 1px solid red;
+    flex-wrap: wrap; /* Wrap items to new rows */
+    flex-direction: row; /* Arrange items horizontally */
+    padding: 10px;
+}
+
+.product-item {
+    flex: 1; /* Distribute available space equally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 0.2rem solid tomato;
+    min-height: 100px; /* Adjust height as needed */
+    aspect-ratio: 1 / 1; /* Make item square */
+}
+
