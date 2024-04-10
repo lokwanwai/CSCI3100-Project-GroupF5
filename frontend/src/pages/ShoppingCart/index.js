@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CartItem from './components/CartItem';
 import CartTotal from './components/CartTotal';
@@ -114,49 +115,65 @@ const ShoppingCart = () => {
             <Header />
             <main className="flex-grow-1">
                 <div className="container my-4">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-10">
-                            <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Product</th>
-                                            <th>Each</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {items.map((item) => (
-                                            <CartItem
-                                                key={item.id}
-                                                item={item}
-                                                onQuantityChange={handleQuantityChange}
-                                                onRemove={handleRemoveItem}
-                                                onSelect={handleSelectItem}
-                                            />
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="mt-1">
-                                <CartTotal
-                                    subtotal={subtotal}
-                                    shippingFee={shippingFee}
-                                    total={total}
+                    {items.length === 0 ? (
+                        <div className="text-center">
+                            <Link to="/">
+                                <img
+                                    src="/empty-cart.svg"
+                                    alt="Empty Cart"
+                                    style={{ width: '200px', height: 'auto' }}
                                 />
-                            </div>
-                            <div className="d-flex justify-content-end mt-1">
-                                <PaymentButton
-                                    items={items}
-                                    total={total}
-                                    onPayment={handlePayment}
-                                />
+                                <p className='text-center'> Your cart is empty. Click to continue shopping.</p>
+                            </Link>
+
+                        </div>
+                    ) : (
+                        <div className="row justify-content-center">
+                            <div className="col-lg-10">
+                                <div className="table-responsive">
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Product</th>
+                                                <th>Each</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {items.map((item) => (
+                                                <CartItem
+                                                    key={item.id}
+                                                    item={item}
+                                                    onQuantityChange={handleQuantityChange}
+                                                    onRemove={handleRemoveItem}
+                                                    onSelect={handleSelectItem}
+                                                />
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="mt-1">
+                                    <CartTotal
+                                        subtotal={subtotal}
+                                        shippingFee={shippingFee}
+                                        total={total}
+                                    />
+                                </div>
+                                <div className="d-flex justify-content-end mt-1">
+                                    <PaymentButton
+                                        items={items}
+                                        total={total}
+                                        onPayment={handlePayment}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
+
+
                 </div>
             </main>
             <Footer />

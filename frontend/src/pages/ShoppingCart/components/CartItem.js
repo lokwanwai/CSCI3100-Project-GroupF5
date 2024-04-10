@@ -24,7 +24,7 @@ const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
                 <div className="d-flex align-items-center">
                     <img
                         src={`/images/${id}.jpg`}
-                        alt={name}
+                        alt={'Img'}
                         style={{ width: 'auto', height: '80%', marginRight: '10px' }}
                         className="d-none d-sm-block"
                     />
