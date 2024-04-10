@@ -55,6 +55,7 @@ const Header = () => {
         <header className="header">
             <nav>
                 <ul>
+                    <li>SuperMall</li>
                     <li><Link to="/">Home</Link></li>
                     {isLoggedIn ? (
                         <>
