@@ -46,9 +46,40 @@ router.get('/search', async (req, res) => {
   }
 });
 
-router.get("/", (req, res) => {       //  get request: 'localhost:3000/product/' case
-    Products.find()       //get list of Product in mongodb atlas
-      .then(product => res.json(product))     //after find, return users in json format (from DB)
+router.get("/searchByID", async (req, res) => {
+  const id = req.query.id;
+  try {
+      const product = await Products.findById(id);
+      if (product) {
+          res.json(product);
+      } else {
+          res.status(404).json({ message: 'Product not found' });
+      }
+  } catch (error) {
+      console.error('Error searching products:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.get("/detail", async (req, res) => {
+  const id = req.query.id;
+  try {
+      const product = await Product.findById(id);
+      if (product) {
+          res.json(product);
+      } else {
+          res.status(404).json({ message: 'Product not found' });
+      }
+  } catch (error) {
+      console.error('Error searching products:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.get("/", (req, res) => {
+  const keyword = req.query.keyword;
+  Products.find()       //get list of Product in mongodb atlas
+  .then(product => res.json(product))     //after find, return users in json format (from DB)
       .catch(err => res.status(400).json("Error fetching product: " + err));       // return status 400 if error 
 });
 
