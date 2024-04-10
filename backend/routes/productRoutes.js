@@ -117,7 +117,7 @@ router.get("/random", async (req, res) => {       //  get request: 'localhost:30
 });
 
 
-// Route: "/prod/details"
+// Route: "api/products/getdetails"
 // Method: GET
 // Parameter: productID
 // Function: Return the entire Object
@@ -135,9 +135,9 @@ router.get('/getdetails/:productID', async (req, res) => {
   }
 });
 
-// Route: "/prod/changeqty"
+// Route: "api/products/changeqty"
 // Method: PUT
-// Parameters: productID, quantity
+// Parameters: productID, quantity (Body)
 // Function: Set the product quantity to the input Quantity
 router.put('/changeqty', async (req, res) => {
   try {

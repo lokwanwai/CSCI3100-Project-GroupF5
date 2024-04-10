@@ -32,5 +32,24 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.put('/updatestatus', async (req, res) => {
+    const { id, status } = req.body;
+
+    try {
+        const order = await Order.findById(id);
+
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        order.status = status;
+        await order.save();
+
+        res.json({ message: 'Order status updated successfully' });
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 module.exports = router;

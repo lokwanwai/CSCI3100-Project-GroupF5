@@ -8,6 +8,7 @@ const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/CartRoutes');
 const paymentRoutes = require('./routes/PaymentRoutes');
 const userRoutes = require('./routes/userRoutes');
+const userProfileRoutes = require('./routes/userProfileRoutes')
 // Import the authNewUserReg router
 const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg');
 // const getProductDetails = require('./routes/getProductDetails');
@@ -44,6 +45,7 @@ app.use(cookieParser());
     app.use('/api/cart', cartRoutes);
     app.use('/api/payment', paymentRoutes);
     app.use('/api/users', userRoutes);
+    app.use('/api/profile', userProfileRoutes);
     // app.use('/api/products', productRoutes);
 
     // Start the server
