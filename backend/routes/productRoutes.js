@@ -116,17 +116,20 @@ router.get("/random", async (req, res) => {       //  get request: 'localhost:30
   }
 });
 
-router.delete('/delete-product/:productId', async (req, res) => {
+router.delete('/delete-product/:productName', async (req, res) => {
   try {
-      const { productId } = req.params;
+      const { productName } = req.params;
 
-      const targetProduct = await Products.findOne({ productId });
+      const targetProduct = await Products.findOne({ productName });
+
+      console.log(productName);
+      console.log(targetProduct);
 
       if (!targetProduct) {
           return res.status(404).json({ message: 'Product not found' });
       }
 
-      await Products.deleteOne({ productId });
+      await Products.deleteOne({ productName });
 
       res.json({ message: 'Product deleted successfully' });
   } catch (error) {

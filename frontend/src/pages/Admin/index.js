@@ -69,7 +69,6 @@ const Admin = () => {
 
     const handleDeleteUser = async (userEmail) => {
         try {
-            console.log(userEmail);
             await axios.delete(`http://localhost:5001/api/users/delete-user/${userEmail}`);
             setUsers(users.filter((user) => user.userEmail !== userEmail));
             window.location.reload();
@@ -78,10 +77,11 @@ const Admin = () => {
         }
     };
 
-    const handleDeleteProduct = async (productId) => {
+    const handleDeleteProduct = async (productName) => {
         try {
-            await axios.delete(`http://localhost:5001/api/products/delete-product/${productId}`);
-            setProducts(products.filter((product) => product.id !== productId));
+            console.log(productName);
+            await axios.delete(`http://localhost:5001/api/products/delete-product/${productName}`);
+            setProducts(products.filter((product) => product.productName !== productName));
             window.location.reload();
         } catch (error) {
             console.error('Error deleting product:', error);

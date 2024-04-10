@@ -16,7 +16,7 @@ const ProductItem = ({ product, onDelete }) => {
             <button
                 className="btn btn-outline-secondary btn-sm"
                 type="button"
-                onClick={() => onDelete(product.productID)}
+                onClick={() => onDelete(product.productName)}
             >
                 Delete Product
             </button>
