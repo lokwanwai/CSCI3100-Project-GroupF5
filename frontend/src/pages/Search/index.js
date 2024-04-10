@@ -165,7 +165,9 @@ const Search = () => {
 
   return (
     <div className="Search">
-      <div>Search Page</div>
+      <div>
+        <h2>Search any product</h2>
+      </div>
       <input
         type="text"
         value={userInput}
