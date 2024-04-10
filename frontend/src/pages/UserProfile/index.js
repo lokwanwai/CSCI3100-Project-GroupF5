@@ -58,7 +58,7 @@ const User = () => {
         setUser(updatedUser);
     };
 
-    const handlePaaswordChange = (userName, newPaasword) => {
+    const handlePasswordChange = (userName, newPaasword) => {
         const updatedUser = user.map((user) => {
             if (user.Name === userName) {
                 return { ...user, saltedPassword: newPaasword };
@@ -79,12 +79,12 @@ const User = () => {
                 <li><ChangeEmail 
                     key={userName} 
                     product={user}
-                    onDelete={handleEmailChange}
+                    changeEmail={handleEmailChange}
                 /><li/>
                 <li><ChangePassword
                     key={userName} 
                     product={user}
-                    onDelete={handlePasswordChange}
+                    changePassword={handlePasswordChange}
                 /><li/>
             </main>
             <Footer />
