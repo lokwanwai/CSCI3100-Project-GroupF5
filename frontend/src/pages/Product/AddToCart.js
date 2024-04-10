@@ -46,4 +46,4 @@ const Cart = ({ product, onAddcart }) =>
     }
 };
 
-export default Cart;
+export default Addtocart;
