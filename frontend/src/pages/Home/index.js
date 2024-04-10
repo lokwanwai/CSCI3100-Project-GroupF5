@@ -63,11 +63,7 @@ const Home = () => {
                     <ul className='product-list'>
                         {products.map(product => (
                             <li className='product-item' key={product._id}>
-                                <img 
-                                    src={`http://localhost:5001/api/products/image/${product.productID}`}
-                                    alt="product">
-                                    {product.productImage}
-                                </img>
+                                
                                 <br/>
                                 {product.productName} 
                                 <br/>
