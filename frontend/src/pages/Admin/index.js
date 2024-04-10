@@ -6,6 +6,7 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import UserItem from './UserItem';
+import ProductItem from './ProductItem';
 
 const Admin = () => {
     const [users, setUsers] = useState([]);
@@ -68,13 +69,23 @@ const Admin = () => {
         fetchProducts();
     }, []);
 
-    const handleDeleteUsers = async (userId) => {
+    const handleDeleteUser = async (userId) => {
         try {
             await axios.delete(`http://localhost:5001/api/users/delete-user/${userId}`);
             setUsers(users.filter((user) => user.id !== userId));
             window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
+        }
+    };
+
+    const handleDeleteProduct = async (productId) => {
+        try {
+            await axios.delete(`http://localhost:5001/api/products/delete-product/${productId}`);
+            setProducts(products.filter((product) => product.id !== productId));
+            window.location.reload();
+        } catch (error) {
+            console.error('Error deleting product:', error);
         }
     };
 
@@ -101,7 +112,7 @@ const Admin = () => {
                                         <UserItem 
                                             key={user._id} 
                                             user={user}
-                                            onDelete={handleDeleteUsers}
+                                            onDelete={handleDeleteUser}
                                         />
                                     ))}
                                 </tbody>
@@ -118,9 +129,10 @@ const Admin = () => {
                                 </thead>
                                 <tbody>
                                     {products.map(product => (
-                                        <UserItem 
+                                        <ProductItem 
                                             key={product._id} 
                                             product={product}
+                                            onDelete={handleDeleteProduct}
                                         />
                                     ))}
                                 </tbody>

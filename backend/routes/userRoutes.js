@@ -3,8 +3,7 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user');
 
-http://localhost:5001/api/users/delete-user/660f6c4234304d6269d4bea0
-router.delete('/delete-user/:productId', async (req, res) => {
+router.delete('/delete-user/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
 
@@ -12,7 +11,7 @@ router.delete('/delete-user/:productId', async (req, res) => {
         const targetUser = await user.findOne({ userId });
 
         if (!targetUser) {
-            return res.status(404).json({ message: 'Item not found in the cart' });
+            return res.status(404).json({ message: 'User not found' });
         }
 
         // Remove the cart item
@@ -20,7 +19,7 @@ router.delete('/delete-user/:productId', async (req, res) => {
 
         res.json({ message: 'User deleted successfully' });
     } catch (error) {
-        console.error('Error removing item from the cart:', error);
+        console.error('Error removing user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 
