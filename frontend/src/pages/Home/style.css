@@ -21,8 +21,8 @@ main {
 }
 
 .product-item {
+    list-style: none;
     flex: 1; /* Distribute available space equally */
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
@@ -30,3 +30,6 @@ main {
     aspect-ratio: 1 / 1; /* Make item square */
 }
 
+.product-item div {
+    height: 70%;
+}

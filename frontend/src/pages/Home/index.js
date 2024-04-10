@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -63,11 +64,20 @@ const Home = () => {
                     <ul className='product-list'>
                         {products.map(product => (
                             <li className='product-item' key={product._id}>
-                                
-                                <br/>
-                                {product.productName} 
-                                <br/>
-                                {product.productPrice} 
+                                <Link to={`/product/${product.productID}`}>
+                                <div>
+                                    <img
+                                        src={`http://localhost:5001/api/products/image/${product.productID}`}
+                                        alt="Product"
+                                        className="img-fluid rounded product-image"
+                                    />
+                                </div>
+                                <div>
+                                    {product.productName} 
+                                    <br></br>
+                                    ${product.productPrice} 
+                                </div>
+                                </Link>
                             </li>
                         ))}
                     </ul>
