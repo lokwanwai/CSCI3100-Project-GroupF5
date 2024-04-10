@@ -1,0 +1,9 @@
+#home {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+#content-wrap {
+    padding-bottom: 3rem;    /* Footer height */
+  }
+  
