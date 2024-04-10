@@ -8,6 +8,9 @@ import Search from './pages/Search'
 import OrderHistory from './pages/OrderHistory';
 import CheckOut from './pages/CheckOut';
 import Admin from './pages/Admin';
+import FAQ from './pages/FAQ';
+import AboutUs from './pages/AboutUs';
+import Shipping from './pages/Shipping';
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
           <Route path="/cart" element={< ShoppingCart />} />
           <Route path="/search" element={< Search />} />
           <Route path="/order" element={< OrderHistory />} />
+          <Route path="/faq" element={< FAQ />} />
+          <Route path="/aboutus" element={< AboutUs />} />
+          <Route path="/shipping" element={< Shipping />} />
 
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/admin" element={<Admin />} />

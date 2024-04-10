@@ -34,9 +34,11 @@ const Home = () => {
         <div className="home">
             <Header />
             <main>
-                <h1>Home Page from pages/Home</h1>
-                {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
-                {/* Additional home page content here */}
+                <div className="content-wrap">
+                    <h1>Home Page from pages/Home</h1>
+                    {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                    {/* Additional home page content here */}
+                </div>
             </main>
             <Footer />
         </div>
