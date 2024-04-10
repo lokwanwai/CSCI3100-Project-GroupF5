@@ -168,7 +168,7 @@ const Search = () => {
       </div>
 
       <div className='input'>  
-        <input
+        <input className='searchQuery'
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
@@ -178,23 +178,24 @@ const Search = () => {
       </div>
 
       <div className='input'>
-        <input
+        <input className='searchId'
           type="text"
           value={productIdInput}
           onChange={(e) => setProductIdInput(e.target.value)}
           placeholder="Search by product ID"
         />
-        <button className='btn btn-outline-secondary btn-sm' onClick={searchProductById}>Search by ID</button>
+        <button className='btn btn-outline-secondary btn-sm' onClick={searchProductById}>Search</button>
       </div>
 
       <div className='input'>
-        <input
+        <input className='searchPrice'
           type="number"
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
           placeholder="Min Price"
-        />
-        <input
+        /> 
+        <h2>-</h2>
+        <input className='searchPrice'
           type="number"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}

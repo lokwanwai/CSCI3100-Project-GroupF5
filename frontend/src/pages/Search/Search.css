@@ -5,10 +5,18 @@
     min-height: 100vh;
   } */
 
+  
 .input {
-  width: 50%;
   display: flex;
   align-items: center;
+  width: 50%;
+  margin: 0 auto; 
+}
+
+.searchQuery, .searchId, .searchPrice {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .Search .search-inputs {
@@ -45,14 +53,6 @@
 
 .Search .search-results .product-item .product-description {
   margin-bottom: 0.5rem;
-}
-
-
-.Search input[type="text"],
-.Search input[type="number"] {
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 300px;
 }
 
 .Search button {
