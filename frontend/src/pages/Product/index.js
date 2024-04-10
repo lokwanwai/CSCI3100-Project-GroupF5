@@ -5,7 +5,7 @@ import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const ProductDetail() = () => {
+const Product = () => {
     const [userEmail, setUserEmail] = useState('');
     
     useEffect(() => {
@@ -61,7 +61,7 @@ const ProductDetail() = () => {
     
     const handleAddtoCart = async (product, newQuantity) => {
         try {
-            await axios.post(`http://localhost:5001/api/products/add-product/${productId}`);
+            await axios.post(`http://localhost:5001/api/cart/add-item/${productId}`);
             setProducts(product, newQuantity);
             window.location.reload();
         } catch (error) {
@@ -100,4 +100,4 @@ const ProductDetail() = () => {
     );
 }
 
-export default ProductDetail
+export default Product
