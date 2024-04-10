@@ -7,6 +7,8 @@ const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState(null); // New state variable for storing user role
     const navigate = useNavigate();
+    
+    const [showMenu, setShowMenu] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5001/api/auth/authenticate', {
@@ -52,36 +54,55 @@ const Header = () => {
             });
     };
 
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
+
     return (
-        <header className="header">
-            <nav>
-                <ul>
-                    <li><img className='logo' src={logo} alt='Logo'></img></li>
-                    <li>SuperMall</li>
-                    <li><Link to="/">Home</Link></li>
-                    {isLoggedIn ? (
-                        <>
-                            {userRole === 'user' && (
-                                <li><Link to="/profile">Profile</Link></li>
-                            )}
-                            {userRole === 'admin' && (
-                                <>
-                                <li><Link to="/profile">Profile</Link></li>
-                                <li><Link to="/admin">Admin Panel</Link></li>
-                                </>
-                            )}
-                            <li><Link to="/cart">Cart</Link></li>
-                            <li onClick={handleLogout}><Link>Logout</Link></li>
-                        </>
-                    ) : (
-                        userRole === null && ( // Only show Register when no user is logged in
+        <header>
+            <nav className="header">
+                <div className='header-container'>
+                    <div className="header-image" >
+                        <img className="logo" src={logo} alt='Logo'></img>
+                    </div>
+                    <div className="header-title">
+                        <h3>SuperMall</h3>
+                    </div>
+                </div>
+                <div className={`menu ${showMenu ? 'active' : ''}`}>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        {isLoggedIn ? (
                             <>
-                                <li><Link to="/login">Login</Link></li>
-                                <li><Link to="/register">Register</Link></li>
+                                {userRole === 'user' && (
+                                    <li><Link to="/profile">Profile</Link></li>
+                                )}
+                                {userRole === 'admin' && (
+                                    <>
+                                    <li><Link to="/profile">Profile</Link></li>
+                                    <li><Link to="/admin">Admin Panel</Link></li>
+                                    </>
+                                )}
+                                <li><Link to="/cart">Cart</Link></li>
+                                <li onClick={handleLogout}><Link>Logout</Link></li>
                             </>
-                        )
-                    )}
-                </ul>
+                        ) : (
+                            userRole === null && ( // Only show Register when no user is logged in
+                                <>
+                                    <li><Link to="/login">Login</Link></li>
+                                    <li><Link to="/register">Register</Link></li>
+                                </>
+                            )
+                        )}
+                    </ul>
+                </div>
+                <div className="hamburger" onClick={toggleMenu}>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                </div>
+
+                
             </nav>
         </header>
     );
