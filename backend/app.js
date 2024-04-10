@@ -10,6 +10,7 @@ const paymentRoutes = require('./routes/PaymentRoutes');
 const userRoutes = require('./routes/userRoutes');
 // Import the authNewUserReg router
 const authNewUserRegRoutes = require('./modules/auth_newUserReg/auth_newUserReg');
+// const getProductDetails = require('./routes/getProductDetails');
 
 
 const app = express();
@@ -43,7 +44,7 @@ app.use(cookieParser());
     app.use('/api/cart', cartRoutes);
     app.use('/api/payment', paymentRoutes);
     app.use('/api/users', userRoutes);
-    app.use('/api/products', productRoutes);
+    // app.use('/api/products', productRoutes);
 
     // Start the server
     const PORT = process.env.PORT || 5001;
