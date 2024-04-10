@@ -61,7 +61,7 @@ const Product() = () => {
     
     const handleAddtoCart = async (product, newQuantity) => {
         try {
-            await axios.post(`http://localhost:5001/api/products/add-product/${productId}`);
+            await axios.post(`http://localhost:5001/api/cart/add-item/${productId}`);
             setProducts(product, newQuantity);
             window.location.reload();
         } catch (error) {
