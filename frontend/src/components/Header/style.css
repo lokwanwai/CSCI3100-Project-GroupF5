@@ -37,7 +37,6 @@
 .header .menu a {
     text-decoration: none;
     color: #212529;
-    font-weight: bold;
     transition: color 0.3s; /* Smooth color transition on hover */
 }
 
@@ -46,14 +45,7 @@
     color: #ffcc00; /* Your desired hover color */
 }
 
-.popup-menu {
-    display: none;
-}
-
-.popup-menu.active {
-    display: block;
-}
-
+/* Styles for hamburger button */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -66,7 +58,9 @@
     margin: 4px 0;
 }
 
-.side-container {
+/* Styles for popup-menu button */
+.popup-menu {
+    display: block;
     position: fixed;
     top: 0;
     right: 0;
@@ -75,6 +69,28 @@
     background-color: #e9ecef;
     transform: translateX('100%');
     transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+/* Style the navigation list */
+.popup-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the links */
+.popup-menu a {
+    text-decoration: none;
+    color: #212529;
+    font-size: 2rem;
+    padding: 20px;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+/* Change link color on hover */
+.popup-menu a:hover {
+    color: #ffcc00; /* Your desired hover color */
 }
 
 .overlay {

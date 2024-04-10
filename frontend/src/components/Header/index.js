@@ -104,7 +104,7 @@ const Header = () => {
                     <div className="line"></div>
                     <div className="line"></div>
                     {menuOpen && 
-                    <div className='popup-menu'>
+                    <div className={`popup-menu`}>
                         <ul>
                             {/* Add your menu items here */}
                             <li><Link to="/">Home</Link></li>
