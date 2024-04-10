@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
 import axios from 'axios';
-import { Link } from "react-router-dom";
-import {useParams} from "react-router-dom"
 import productsData from "./productsData"
 import AddToCartButton from "./AddToCartButton"
 import Header from '../../components/Header';
@@ -12,6 +10,7 @@ const ProductDetail() = () => {
     const {productId} = useParams()
     const [userEmail, setUserEmail] = useState('');
     const thisProduct = productsData.find(prod => prod.id === productId)
+    
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
         // The browser will automatically handle sending the appropriate cookies.
@@ -35,17 +34,51 @@ const ProductDetail() = () => {
             console.error('Error:', error);
         });
     }, []); // The effect runs once after the component mounts
+    
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/products`);
+                setProducts(response.data);
+                //console.log(response);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+    const handleAddtoCart = async (productId) => {
+        try {
+            await axios.delete(`http://localhost:5001/api/products/delete-product/${productId}`);
+            setProducts(products.filter((product) => product.id !== productId));
+            window.location.reload();
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+    };
+    
     return (
-      <>
-        {data.map((card,index)=>(
-            <div key={index} className="card">
-            <h1>{card.title}</h1>
-            <img src={card.image} />
-            <p>{card.description}</p>
-            <Link to={`/cards/${card.title}`}>View More</Link>
-           </div>
-        ))}
-      </>
+        <div className="productdetail">
+            <Header />
+            <main>
+                <div class="container">
+                    <div class="title">PRODUCT DETAIL</div>
+                    <div class="detail">
+                        {products.map(product => (
+                            <ProductItem 
+                                key={product._id} 
+                                product={product}
+                                onDelete={handleAddtoCart}
+                            />
+                        ))}
+                    </div>
+                    <div class="title">Similar product</div>
+                    <div class="listProduct"></div>
+                </div>
+            </main>
+            <Footer />
+        </div>
     );
 }
 
