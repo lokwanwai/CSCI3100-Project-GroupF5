@@ -4,59 +4,59 @@
     align-items: center;
     min-height: 100vh;
   } */
-  
-  .Search .search-inputs {
-    margin-bottom: 1rem;
-  }
-  
-  .Search .search-inputs input[type="text"] {
-    margin-right: 0.5rem;
-  }
-  
-  .Search .search-results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .Search .search-results .product-item {
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-  }
-  
-  .Search .search-results .product-item img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .Search .search-results .product-item .product-name {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .Search .search-results .product-item .product-description {
-    margin-bottom: 0.5rem;
-  }
 
+  
+.input {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto; 
+}
 
-  .Search input[type="text"],
-.Search input[type="number"] {
+.searchQuery, .searchId, .searchPrice {
   padding: 10px;
   margin-bottom: 10px;
-  width: 300px;
+  width: 100%;
+}
+
+.Search .search-inputs {
+  margin-bottom: 1rem;
+}
+
+.Search .search-inputs input[type="text"] {
+  margin-right: 0.5rem;
+}
+
+.Search .search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Search .search-results .product-item {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+
+.Search .search-results .product-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.Search .search-results .product-item .product-name {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.Search .search-results .product-item .product-description {
+  margin-bottom: 0.5rem;
 }
 
 .Search button {
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.Search button:hover {
-  background-color: #45a049;
+  margin-bottom: 10px;
+  height: 100%;
 }
