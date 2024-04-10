@@ -14,7 +14,6 @@ import Shipping from './pages/Shipping';
 import Profile from './pages/UserProfile';
 import Product from './pages/Product';
 
-
 const App = () => {
   return (
     <Router>
