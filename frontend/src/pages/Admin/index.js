@@ -94,7 +94,7 @@ const Admin = () => {
             <Header />
             <main>
                 <h1>Admin Panel</h1>
-                {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                {/* {userEmail && <p>User Email: {userEmail}</p>} Display user email if available */}
                 {isLoggedIn ? (
                     <>
                         {userRole === 'admin' && (
