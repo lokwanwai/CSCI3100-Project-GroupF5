@@ -12,6 +12,8 @@ const Admin = () => {
     const [products, setProducts] = useState([]);
 
     const [userEmail, setUserEmail] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userRole, setUserRole] = useState(null);
 
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
@@ -31,9 +33,12 @@ const Admin = () => {
             })
             .then(data => {
                 setUserEmail(data.email); // Set user email if token is valid
+                setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
+                setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
             })
             .catch(error => {
                 console.error('Error:', error);
+                setIsLoggedIn(false);
             });
     }, []); // The effect runs once after the component mounts
 
@@ -66,7 +71,8 @@ const Admin = () => {
     const handleDeleteUsers = async (userId) => {
         try {
             await axios.delete(`http://localhost:5001/api/users/delete-user/${userId}`);
-            setUsers(users.filter((item) => item.id !== userId));
+            setUsers(users.filter((user) => user.id !== userId));
+            window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
         }
@@ -78,43 +84,57 @@ const Admin = () => {
             <main>
                 <h1>Admin Panel</h1>
                 {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
-                <h2>User List</h2>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => (
-                            <UserItem 
-                                key={user._id} 
-                                user={user}
-                                onDelete={handleDeleteUsers}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-                <h2>Product List</h2>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Product Price</th>
-                            <th>Product Image</th>
-                            <th>Product Storage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map(product => (
-                            <UserItem 
-                                key={product._id} 
-                                product={product}
-                            />
-                        ))}
-                    </tbody>
-                </table>
+                {isLoggedIn ? (
+                    <>
+                        {userRole === 'admin' && (
+                            <>
+                            <h2>User List</h2>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {users.map(user => (
+                                        <UserItem 
+                                            key={user._id} 
+                                            user={user}
+                                            onDelete={handleDeleteUsers}
+                                        />
+                                    ))}
+                                </tbody>
+                            </table>
+                            <h2>Product List</h2>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Product Price</th>
+                                        <th>Product Image</th>
+                                        <th>Product Storage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {products.map(product => (
+                                        <UserItem 
+                                            key={product._id} 
+                                            product={product}
+                                        />
+                                    ))}
+                                </tbody>
+                            </table>
+                            </>
+                        )}
+                    </>
+                ) : (
+                    userRole === null && ( // Only show Register when no user is logged in
+                        <>
+                            <li>Only admin user can access this page!</li>
+                        </>
+                    )
+                )}
             </main>
             <Footer />
         </div>
