@@ -35,17 +35,10 @@ main {
     height: 70%;
 }
 
-
-.productLink {
+.product-item a {
     text-decoration: none;
-    color: inherit;
-  }
+    color: #212529;
+}
   
-  .productInfo {
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-  }
-
 
   

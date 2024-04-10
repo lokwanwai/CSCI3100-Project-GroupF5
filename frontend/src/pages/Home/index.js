@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
-import styles from 'styled-components';
 import Search from '../../pages/Search';
 
 const Home = () => {
