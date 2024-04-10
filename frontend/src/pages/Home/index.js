@@ -4,6 +4,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
 
+import Search from '../../pages/Search';
+
 const Home = () => {
     const [userEmail, setUserEmail] = useState('');
 
@@ -68,8 +70,8 @@ const Home = () => {
                             </li>
                         ))}
                     </ul>
-
                 </div>
+                <Search/>
             </main>
             <Footer />
         </div>
