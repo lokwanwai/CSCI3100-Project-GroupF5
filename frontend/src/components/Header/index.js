@@ -62,10 +62,13 @@ const Header = () => {
                                 <li><Link to="/profile">Profile</Link></li>
                             )}
                             {userRole === 'admin' && (
+                                <>
+                                <li><Link to="/profile">Profile</Link></li>
                                 <li><Link to="/admin">Admin Panel</Link></li>
+                                </>
                             )}
-                            <li><Link to="/cart">cart</Link></li>
-                            <li onClick={handleLogout}>Logout</li>
+                            <li><Link to="/cart">Cart</Link></li>
+                            <li onClick={handleLogout}><Link>Logout</Link></li>
                         </>
                     ) : (
                         userRole === null && ( // Only show Register when no user is logged in
