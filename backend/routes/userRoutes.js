@@ -1,21 +1,22 @@
 // userRoutes.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const user = require('../models/user');
 
-router.delete('/delete-user/:userId', async (req, res) => {
+router.delete('/delete-user/:userEmail', async (req, res) => {
     try {
-        const { userId } = req.params;
+        const { userEmail } = req.params;
 
-        const targetUser = await User.findOne({ userId });
+        const targetUser = await user.findOne({ userEmail });
 
-        console.log(userID);
+        console.log(userEmail);
+        console.log(targetUser);
 
         if (!targetUser) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        await User.deleteOne({ userId });
+        await user.deleteOne({ userEmail });
 
         res.json({ message: 'User deleted successfully' });
     } catch (error) {
@@ -28,7 +29,7 @@ router.delete('/delete-user/:userId', async (req, res) => {
 router.get('/', async (req, res) => {
 
     try {
-        const list = await User.find();
+        const list = await user.find();
         res.json(list);
     } catch (error) {
         console.error('Error fetching users:', error);

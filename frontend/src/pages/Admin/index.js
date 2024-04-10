@@ -12,7 +12,6 @@ const Admin = () => {
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
 
-    const [userEmail, setUserEmail] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState(null);
 
@@ -33,7 +32,6 @@ const Admin = () => {
                 return response.json();
             })
             .then(data => {
-                setUserEmail(data.email); // Set user email if token is valid
                 setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
                 setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
             })
@@ -69,10 +67,11 @@ const Admin = () => {
         fetchProducts();
     }, []);
 
-    const handleDeleteUser = async (userId) => {
+    const handleDeleteUser = async (userEmail) => {
         try {
-            await axios.delete(`http://localhost:5001/api/users/delete-user/${userId}`);
-            setUsers(users.filter((user) => user.id !== userId));
+            console.log(userEmail);
+            await axios.delete(`http://localhost:5001/api/users/delete-user/${userEmail}`);
+            setUsers(users.filter((user) => user.userEmail !== userEmail));
             window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
