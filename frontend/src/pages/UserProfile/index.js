@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
-import { ChangeEmail } from './ChangeEmail';
-import { ChangePassword } from './ChangePassword';
+import ChangeEmail from './ChangeEmail';
+import ChangePassword from './ChangePassword';
 
 
 const UserProfile = () => {
+    const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [userID, setUserID] = useState('');
     const [saltedPassword, setsaltedPassword] = useState('');
+    const [Items, setItems] = useState('');
+
+
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
         // The browser will automatically handle sending the appropriate cookies.
@@ -49,21 +55,21 @@ const UserProfile = () => {
     }, [userEmail]);
 
     const handleEmailChange = (userName, newEmail) => {
-        const updatedUser = user.map((user) => {
-            if (user.Name === userName) {
-                return { ...user, userEmail: newEmail };
+        const updatedUser = userID.map((user) => {
+            if (userID.Name === userName) {
+                return { ...userID, userEmail: newEmail };
             }
-            return user;
+            return userID;
         });
         setUserEmail(updatedUser);
     };
 
     const handlePasswordChange = (userName, newPaasword) => {
-        const updatedUser = user.map((user) => {
-            if (user.Name === userName) {
-                return { ...user, saltedPassword: newPaasword };
+        const updatedUser = userID.map((userID) => {
+            if (userID.Name === userName) {
+                return { ...userID, saltedPassword: newPaasword };
             }
-            return user;
+            return userID;
         });
         setsaltedPassword(updatedUser);
     };
@@ -78,14 +84,15 @@ const UserProfile = () => {
                 <li><Link to="/order">My order</Link></li>
                 <li><ChangeEmail 
                     key={userName} 
-                    product={user}
-                    changeEmail={handleEmailChange}
-                /><li/>
+                    user={userID}
+                    onChangeEmail={handleEmailChange}
+                /></li>
                 <li><ChangePassword
                     key={userName} 
-                    product={user}
-                    changePassword={handlePasswordChange}
-                /><li/>
+                    user={userID}
+                    onChangePassword={handlePasswordChange}
+                />
+                </li>
             </main>
             <Footer />
         </div>
