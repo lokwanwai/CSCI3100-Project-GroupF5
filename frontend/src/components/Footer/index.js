@@ -41,6 +41,7 @@ const Footer = () => {
                             <>
                                 <li><Link to="/profile">Profile</Link></li>
                                 <li><Link to="/cart">Cart</Link></li>
+                                <li><Link to="/order">Order</Link></li>
                             </>
                         ) : (
                             userRole === null && ( // Only show Register when no user is logged in
