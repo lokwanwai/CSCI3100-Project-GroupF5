@@ -1,0 +1,29 @@
+/* ProductDetail.css */
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    margin-bottom: 20px;
+  }
+  
+  .product-storage {
+    margin-bottom: 10px;
+  }
+  
+  .quantity-input {
+    width: 80px;
+    margin-right: 10px;
+  }
+  
+  .add-to-cart-btn {
+    padding: 10px 20px;
+  }
