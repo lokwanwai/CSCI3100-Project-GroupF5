@@ -46,20 +46,20 @@
     color: #ffcc00; /* Your desired hover color */
 }
   
-.menu {
+.popup-menu {
     display: none;
 }
 
-.menu.active {
+.popup-menu.active {
     display: block;
 }
 
-.menu ul {
+.popup-menu ul {
     list-style: none;
     padding: 0;
 }
 
-.menu li {
+.popup-menu li {
     margin: 0.5rem 0;
 }
 
@@ -78,10 +78,20 @@
 /* Media query for small screens */
 @media (max-width: 768px) {
     .menu {
-        display: block;
+        display: none;
     }
 
     .hamburger {
         display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu {
+        display: block;
+    }
+
+    .hamburger {
+        display: none;
     }
 }
