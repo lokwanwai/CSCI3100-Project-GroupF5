@@ -7,7 +7,9 @@ import Footer from '../../components/Footer';
 
 const Product = () => {
     const [userEmail, setUserEmail] = useState('');
-    
+    const [products, setProducts] = useState('');
+    const [Items, setItems] = useState('');
+
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
         // The browser will automatically handle sending the appropriate cookies.
@@ -61,7 +63,7 @@ const Product = () => {
     
     const handleAddtoCart = async (product, newQuantity) => {
         try {
-            await axios.post(`http://localhost:5001/api/cart/add-item/${productId}`);
+            await axios.post(`http://localhost:5001/api/cart/add-item/${product.productName}`);
             setProducts(product, newQuantity);
             window.location.reload();
         } catch (error) {
@@ -79,6 +81,7 @@ const Product = () => {
                         <tr>
                             <td>{product.productPhoto}</td>
                         </tr>
+                        <tr>
                             <td>{product.productName}</td>
                             <td>{product.productPrice}</td>
                             <td>{product.productDescription}</td>
@@ -101,3 +104,4 @@ const Product = () => {
 };
 
 export default Product;
+
