@@ -5,7 +5,7 @@ import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const ProductDetail() = () => {
+const Product() = () => {
     const [userEmail, setUserEmail] = useState('');
     
     useEffect(() => {
@@ -100,4 +100,4 @@ const ProductDetail() = () => {
     );
 }
 
-export default ProductDetail
+export default Product
