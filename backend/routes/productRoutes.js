@@ -72,4 +72,17 @@ router.delete("/:id",(req, res) => {     //pass in object id, delete request, de
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.get("/random", async (req, res) => {       //  get request: 'localhost:3000/product/' case
+  try {
+      const randomProducts = await Products.aggregate([
+          { $sample: { size: 5 } } // Adjust the sample size as needed
+      ]);
+
+      res.json(randomProducts);
+  } catch (error) {
+      console.error('Error fetching random products:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;
