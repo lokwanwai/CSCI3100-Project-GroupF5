@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const Cart = () => 
+const Cart = ({ product, onAddcart }) => 
 	const [itemCount, setItemCount] = React.useState(1);
 
 	return (
@@ -33,6 +33,11 @@ const Cart = () =>
     					>
     						{" "}
     						<AddIcon fontSize="small" />
+    					</Button>
+							<Button
+    						onClick={() => {onAddcart(product, itemCount)}}
+    					>
+    						{"Add to Cart"}
     					</Button>
     				</ButtonGroup>
     			</div>
