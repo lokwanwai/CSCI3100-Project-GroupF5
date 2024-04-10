@@ -51,14 +51,20 @@ const Home = () => {
         <div className="home">
             <Header />
             <main>
-                <h1>Welcome to the online shopping mall</h1>
+                <h1>Welcome to SuperMall</h1>
                 {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
                 {/* Additional home page content here */}
                 <div className='feature-products'>
                     <h2>Featured Products</h2>
-                    <ul className='list'>
+                    <ul className='product-list'>
                         {products.map(product => (
-                            <li key={product._id}>{product.productName}</li>
+                            <li className='product-item' key={product._id}>
+                                {product.productPhoto}
+                                <br/>
+                                {product.productName} 
+                                <br/>
+                                {product.productPrice} 
+                            </li>
                         ))}
                     </ul>
                 </div>

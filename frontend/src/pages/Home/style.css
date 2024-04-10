@@ -1,0 +1,32 @@
+main {
+    align-items: center;
+    text-align: center;
+}
+
+/* Example CSS for a grid of product blocks */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 1rem; /* Gap between cells */
+    list-style: none; /* Remove default list styling */
+    padding: 1rem;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to the next row */
+    gap: 1rem; /* Gap between items */
+    list-style: none; /* Remove default list styling */
+    padding: 1rem;
+}
+
+.product-item {
+    flex: 1; /* Distribute available space equally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 0.2rem solid tomato;
+    min-height: 100px; /* Adjust height as needed */
+    aspect-ratio: 1 / 1; /* Make item square */
+}
