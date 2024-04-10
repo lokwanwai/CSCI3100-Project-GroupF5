@@ -33,3 +33,8 @@ main {
 .product-item div {
     height: 70%;
 }
+
+.product-item a {
+    text-decoration: none;
+    color: #212529;
+}
