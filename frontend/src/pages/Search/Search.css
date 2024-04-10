@@ -60,3 +60,15 @@
   margin-bottom: 10px;
   height: 100%;
 }
+
+.card {
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  min-height: 100px; /* Adjust height as needed */
+}
+
+.card img {
+  max-width: 200px;
+  max-height: 200px;
+}
