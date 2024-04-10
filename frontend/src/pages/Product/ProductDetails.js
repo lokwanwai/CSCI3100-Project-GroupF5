@@ -1,15 +1,12 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import axios from 'axios';
-import productsData from "./productsData"
-import AddToCartButton from "./AddToCartButton"
+import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const ProductDetail() = () => {
-    const {productId} = useParams()
     const [userEmail, setUserEmail] = useState('');
-    const thisProduct = productsData.find(prod => prod.id === productId)
     
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
@@ -48,10 +45,24 @@ const ProductDetail() = () => {
         fetchProducts();
     }, []);
 
-    const handleAddtoCart = async (productId) => {
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/cart/?user=${userEmail}`);
+                setItems(response.data);
+            } catch (error) {
+                console.error('Error fetching cart items:', error);
+            }
+        };
+        if (userEmail) {
+            fetchCartItems();
+        }
+    }, [userEmail]);
+    
+    const handleAddtoCart = async (product, newQuantity) => {
         try {
-            await axios.delete(`http://localhost:5001/api/products/delete-product/${productId}`);
-            setProducts(products.filter((product) => product.id !== productId));
+            await axios.post(`http://localhost:5001/api/products/add-product/${productId}`);
+            setProducts(product, newQuantity);
             window.location.reload();
         } catch (error) {
             console.error('Error adding to cart:', error);
@@ -65,16 +76,23 @@ const ProductDetail() = () => {
                 <div class="container">
                     <div class="title">PRODUCT DETAIL</div>
                     <div class="detail">
+                        <tr>
+                            <td>{product.productPhoto}</td>
+                        </tr>
+                            <td>{product.productName}</td>
+                            <td>{product.productPrice}</td>
+                            <td>{product.productDescription}</td>
+                        </tr>
+                    </div>
+                    <div class="addtocart">
                         {products.map(product => (
-                            <ProductItem 
+                            <AddToCart 
                                 key={product._id} 
                                 product={product}
-                                onDelete={handleAddtoCart}
+                                onAddtocart={handleAddtoCart}
                             />
                         ))}
                     </div>
-                    <div class="title">Similar product</div>
-                    <div class="listProduct"></div>
                 </div>
             </main>
             <Footer />
