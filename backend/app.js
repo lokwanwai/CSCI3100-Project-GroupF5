@@ -3,6 +3,7 @@ const cors = require('cors');
 const { connectDB, initDB } = require('./modules/dbInit/dbInit');
 const cookieParser = require('cookie-parser');
 // Import routes
+const orderRoutes = require('./routes/OrderRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/CartRoutes');
 const paymentRoutes = require('./routes/PaymentRoutes');
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
     // // Mount routes after DB initialization
     app.use('/api/products', productRoutes);
+    app.use('/api/order', orderRoutes);
 
 
     // Mount the auth_newUserReg routes

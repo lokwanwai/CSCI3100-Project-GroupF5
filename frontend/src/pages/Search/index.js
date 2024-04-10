@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductItem from './components/ProductItem';
-// import CartTotal from './components/CartTotal';
-// import PaymentButton from './components/PaymentButton';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 

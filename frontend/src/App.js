@@ -4,7 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ShoppingCart from './pages/ShoppingCart';
-import Search from './pages/Search';
+import Search from './pages/Search'
+import OrderHistory from './pages/OrderHistory';
 import CheckOut from './pages/CheckOut';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={< ShoppingCart />} />
           <Route path="/search" element={< Search />} />
+          <Route path="/order" element={< OrderHistory />} />
 
           <Route path="/checkout" element={<CheckOut />} />
           {/* <Route path="/admin" element={<Admin />} /> */}
