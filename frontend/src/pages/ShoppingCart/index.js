@@ -114,7 +114,7 @@ const ShoppingCart = () => {
         <div className="shopping-cart">
             <Header />
             <main className="flex-grow-1">
-                <div className="container my-4">
+                <div className="container my-5">
                     {items.length === 0 ? (
                         <div className="text-center">
                             <Link to="/">
@@ -123,7 +123,7 @@ const ShoppingCart = () => {
                                     alt="Empty Cart"
                                     style={{ width: '200px', height: 'auto' }}
                                 />
-                                <p className='text-center'> Your cart is empty. Click to continue shopping.</p>
+                                <p className='text-center m-3'> Your cart is empty. Click to continue shopping.</p>
                             </Link>
 
                         </div>
