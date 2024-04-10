@@ -11,9 +11,9 @@ const OrderItem = ({ item}) => {
             <td className="align-middle product-name">
                 <div className="d-flex align-items-center">
                     <img
-                        src={`/images/${id}.jpg`}
+                        src={`http://localhost:5001/api/products/image/${id}`}
                         alt={name}
-                        style={{ width: 'auto', height: '80%', marginRight: '10px' }}
+                        style={{ maxHeight: '110px', height: '80%', marginRight: '10px' }}
                         className="d-none d-sm-block"
                     />
                     <Link
@@ -23,7 +23,7 @@ const OrderItem = ({ item}) => {
                     </Link>
                 </div>
             </td>
-            <td className="align-middle product-name">${name !== undefined ? name : ""}</td>
+            <td className="align-middle product-name">{name !== undefined ? name : ""}</td>
             <td className="align-middle product-price">${price !== undefined ? price : ""}</td>
             <td className="align-middle product-quantity">{quantity !== undefined ? quantity : ""}</td>
             <td className="align-middle product-shippingCost">${shippingCost !== undefined ? shippingCost.toFixed(2) : ""}</td>

@@ -48,7 +48,7 @@
 
 /* Change link color on hover */
 .header .menu a:hover {
-    color: #ffcc00; /* Your desired hover color */
+    color: #888888; /* Your desired hover color */
 }
 
 /* Styles for hamburger button */
@@ -96,7 +96,7 @@
 
 /* Change link color on hover */
 .popup-menu a:hover {
-    color: #ffcc00; /* Your desired hover color */
+    color: #888888; /* Your desired hover color */
 }
 
 .overlay {

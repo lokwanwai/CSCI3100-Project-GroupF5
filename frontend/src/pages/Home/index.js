@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
-
+import styles from 'styled-components';
 import Search from '../../pages/Search';
 
 const Home = () => {
@@ -54,39 +54,37 @@ const Home = () => {
 
     return (
         <div className="home">
-            <Header />
-            <main>
-                <h1>Welcome to SuperMall</h1>
-                {/* {userEmail && <p>User Email: {userEmail}</p>} Display user email if available */}
-                {/* Additional home page content here */}
-                <div className='feature-products'>
-                    <h2>Featured products</h2>
-                    <ul className='product-list'>
-                        {products.map(product => (
-                            <li className='product-item' key={product._id}>
-                                <Link to={`/product/${product.productID}`}>
-                                <div>
-                                    <img
-                                        src={`http://localhost:5001/api/products/image/${product.productID}`}
-                                        alt="Product"
-                                        className="img-fluid rounded product-image"
-                                    />
-                                </div>
-                                <div>
-                                    {product.productName} 
-                                    <br></br>
-                                    ${product.productPrice} 
-                                </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <Search/>
-            </main>
-            <Footer />
+          <Header />
+          <main>
+            <h1>Welcome to SuperMall</h1>
+            <div className='feature-products'>
+              <h2>Featured products</h2>
+              <ul className='product-list'>
+                {products.map(product => (
+                  <li className='product-item' key={product._id}>
+                    <Link to={`/product/${product.productID}`}>
+                      <div>
+                        <img
+                          src={`http://localhost:5001/api/products/image/${product.productID}`}
+                          alt="Product"
+                          className="img-fluid rounded product-image"
+                        />
+                      </div>
+                      <div>
+                        <span style={{ textDecoration: 'underline' }}>{product.productName}</span>
+                        <br />
+                        <span style={{ textDecoration: 'none' }}>${product.productPrice}</span>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Search />
+          </main>
+          <Footer />
         </div>
-    );
+      );
 };
 
 export default Home;

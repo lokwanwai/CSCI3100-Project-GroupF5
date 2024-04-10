@@ -62,7 +62,7 @@ async function verifyOTP(email, otp) {
 // Method: GET
 // Parameter: email (in the body)
 // Function: Return the entire user
-router.get('/getdetails', async (req, res) => {
+router.put('/getdetails', async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ userEmail: email });

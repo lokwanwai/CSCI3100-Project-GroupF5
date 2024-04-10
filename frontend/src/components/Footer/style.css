@@ -1,7 +1,7 @@
 .footer {
     width: 100%;
-    background-color: #888888; /* Set your desired background color */
-    color: #fff; /* Text color */
+    background-color: #e9ecef; /* Set your desired background color */
+    color: #333333; /* Text color */
 }
 
 /* Style the navigation list */
@@ -22,12 +22,18 @@
 /* Style the links */
 .footer a {
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+    color: #333333;
+    /* font-weight: bold; */
     transition: color 0.3s; /* Smooth color transition on hover */
 }
 
 /* Change link color on hover */
 .footer a:hover {
-    color: #ffcc00; /* Your desired hover color */
+    color: #888888; /* Your desired hover color */
 }
+
+
+.footer-item li:not(:has(h3)) {
+    /* Styles for the selected <li> items */
+    margin-left: 2px;
+  }

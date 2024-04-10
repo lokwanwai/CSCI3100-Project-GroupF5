@@ -14,6 +14,7 @@ main {
 }
 
 .product-list {
+    text-decoration: none;
     display: flex;
     flex-wrap: wrap; /* Wrap items to new rows */
     flex-direction: row; /* Arrange items horizontally */
@@ -33,3 +34,17 @@ main {
 .product-item div {
     height: 70%;
 }
+
+.productLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .productInfo {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+
+  

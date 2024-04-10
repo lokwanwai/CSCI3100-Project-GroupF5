@@ -28,7 +28,7 @@ router.get('/search', async (req, res) => {
         ]
       })
       .then(products => {
-        console.log('Matching products:', products);
+        // console.log('Matching products:', products);
         res.json(products);
       })
       .catch(error => {console.error('Error finding products:', error);});
@@ -167,9 +167,9 @@ router.get('/image/:productID', async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
     const imagePath = product.productImage;
-    console.log('Fetching product image:', imagePath);
+    // console.log('Fetching product image:', imagePath);
     const absolutePath = path.join(__dirname,"backend", '..', imagePath);
-    console.log('Fetching product image:', absolutePath);
+    // console.log('Fetching product image:', absolutePath);
     res.sendFile(absolutePath);
   } catch (error) {
     console.error('Error fetching product image:', error);

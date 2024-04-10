@@ -74,7 +74,7 @@ const Product = () => {
         <div className="productdetail">
             <Header />
             <main>
-                <div class="container">
+                <div class="product-container">
                     <div class="title">PRODUCT DETAIL</div>
                     <div class="detail">
                         <tr>
