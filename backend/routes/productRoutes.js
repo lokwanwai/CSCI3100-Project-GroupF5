@@ -1,38 +1,75 @@
 // productRoutes.js
 const express = require('express');
-const router = express.Router();
+const router = express.Router();     // express routers
+const multer = require('multer');   // upload photo
+const mongoose = require('mongoose');
 
 let Products = require("../models/product");
 
-router.delete("/delete-product/:id", async (req, res) => {
-    try {
-        const { productId } = req.params;
-
-        // Find the cart item based on userEmail and productId
-        const targetProduct = await Products.findOne({ productId });
-
-        if (!targetProduct) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-
-        // Remove the cart item
-        await Products.deleteOne({ productId });
-
-        res.json({ message: 'Product deleted successfully' });
-    } catch (error) {
-        console.error('Error removing product:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'public/uploads/');
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  }
 });
 
-router.get('/', async (req, res) => {
-    try {
-        const list = await Products.find();
-        res.json(list);
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+/* storge image */
+const upload = multer({storage: storage});
+ 
+router.get('/search', async (req, res) => {
+  const keyword = req.query.keyword;
+  try {
+      const searchedProducts = await Products.find({
+        $or: [
+          { productDescription: { $regex: keyword, $options: 'i' } }, // Case-insensitive search in productDescription
+          { productName: { $regex: keyword, $options: 'i' } } // Case-insensitive search in productName
+        ]
+      })
+      .then(products => {
+        console.log('Matching products:', products);
+        res.json(products);
+      })
+      .catch(error => {console.error('Error finding products:', error);});
+
+      // const formattedProducts = searchedProducts.map((item) => ({
+      //     name: item.productName,
+      //     price: item.productPrice,
+      //     description: item.productDescription,
+      // }));
+
+      //res.json(searchedProducts);
+  } catch (error) {
+      console.error('Error searching products:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.get("/", (req, res) => {       //  get request: 'localhost:3000/product/' case
+    Products.find()       //get list of Product in mongodb atlas
+      .then(product => res.json(product))     //after find, return users in json format (from DB)
+      .catch(err => res.status(400).json("Error fetching product: " + err));       // return status 400 if error 
+});
+
+router.post("/add", upload.single("productPhoto"), (req, res) => {   // post request
+  const newProduct = new Products({
+    productName: req.body.productName,
+    price: Number(req.body.price),
+    productDescription: req.body.productDescription,
+    productPhoto: req.file.originalname,
+  });
+
+  // validation
+  newProduct.save()        // save the new user to DB
+     .then(() => res.json("Product uploaded!"))        // return "User added" if add success
+     .catch(err => res.status(400).json("Error: " + err));   // return error if failed
+});
+
+router.delete("/:id",(req, res) => {     //pass in object id, delete request, delete that object by id
+  Products.findByIdAndDelete(req.params.id)       //findByIdAndDelete
+    .then(() => res.json("Product deleted."))
+    .catch(err => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;
