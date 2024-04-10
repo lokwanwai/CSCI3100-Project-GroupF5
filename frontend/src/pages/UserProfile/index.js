@@ -9,7 +9,7 @@ import { ChangePassword } from './ChangePassword';
 
 const UserProfile = () => {
     const [userEmail, setUserEmail] = useState('');
-
+    const [saltedPassword, setsaltedPassword] = useState('');
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
         // The browser will automatically handle sending the appropriate cookies.
@@ -55,7 +55,7 @@ const UserProfile = () => {
             }
             return user;
         });
-        setUser(updatedUser);
+        setUserEmail(updatedUser);
     };
 
     const handlePasswordChange = (userName, newPaasword) => {
@@ -65,14 +65,13 @@ const UserProfile = () => {
             }
             return user;
         });
-        setUser(updatedUser);
+        setsaltedPassword(updatedUser);
     };
     
     return (
         <div className="user">
             <Header />
             <main>
-        
                 <h1>User Profile</h1>
                 {userEmail && <p>User Email: {userEmail}</p>}
                 <li><Link to="/cart">My Cart</Link></li>
