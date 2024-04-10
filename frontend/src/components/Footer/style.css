@@ -4,11 +4,6 @@
     width: 100%;
     background-color: #888888; /* Set your desired background color */
     color: #fff; /* Text color */
-
-    /* Center the navigation horizontally */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /* Style the navigation list */
@@ -17,7 +12,7 @@
     margin: 0;
     padding: 0;
     display: flex; /* Display the list items horizontally */
-    justify-content: center;
+    justify-content: space-between;
 }
 
 /* Style the navigation list items */
