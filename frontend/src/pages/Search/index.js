@@ -165,8 +165,9 @@ const Search = () => {
 
   return (
     <div className="Search">
-      <Header />
-      <div>Search Page</div>
+      <div>
+        <h2>Search any product</h2>
+      </div>
       <input
         type="text"
         value={userInput}
@@ -208,7 +209,6 @@ const Search = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

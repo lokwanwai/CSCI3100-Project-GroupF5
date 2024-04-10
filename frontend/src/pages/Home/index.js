@@ -4,6 +4,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import './style.css';
 
+import Search from '../../pages/Search';
+
 const Home = () => {
     const [userEmail, setUserEmail] = useState('');
 
@@ -51,12 +53,11 @@ const Home = () => {
         <div className="home">
             <Header />
             <main>
-
                 <h1>Welcome to SuperMall</h1>
-                {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                {/* {userEmail && <p>User Email: {userEmail}</p>} Display user email if available */}
                 {/* Additional home page content here */}
                 <div className='feature-products'>
-                    <h2>Featured Products</h2>
+                    <h2>Featured products</h2>
                     <ul className='product-list'>
                         {products.map(product => (
                             <li className='product-item' key={product._id}>
@@ -68,8 +69,8 @@ const Home = () => {
                             </li>
                         ))}
                     </ul>
-
                 </div>
+                <Search/>
             </main>
             <Footer />
         </div>
