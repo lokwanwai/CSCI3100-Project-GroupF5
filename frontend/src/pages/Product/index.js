@@ -5,7 +5,7 @@ import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const Product() = () => {
+const Product = () => {
     const [userEmail, setUserEmail] = useState('');
     
     useEffect(() => {
