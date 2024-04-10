@@ -1,7 +1,7 @@
 /* Assuming you have a container for your header */
 .header {
-    background-color: #333; /* Set your desired background color */
-    color: #fff; /* Text color */
+    background-color: #e9ecef; /* Set your desired background color */
+    color: #212529; /* Text color */
     padding: 20px; /* Add some padding for spacing */
 
     /* Center the navigation horizontally */
@@ -36,7 +36,7 @@
 /* Style the links */
 .header .menu a {
     text-decoration: none;
-    color: #fff;
+    color: #212529;
     font-weight: bold;
     transition: color 0.3s; /* Smooth color transition on hover */
 }
@@ -45,22 +45,13 @@
 .header .menu a:hover {
     color: #ffcc00; /* Your desired hover color */
 }
-  
+
 .popup-menu {
     display: none;
 }
 
 .popup-menu.active {
     display: block;
-}
-
-.popup-menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-.popup-menu li {
-    margin: 0.5rem 0;
 }
 
 .hamburger {
@@ -71,8 +62,29 @@
 .hamburger .line {
     width: 30px;
     height: 3px;
-    background-color: #fff;
+    background-color: #212529;
     margin: 4px 0;
+}
+
+.side-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #e9ecef;
+    transform: translateX('100%');
+    transition: transform 0.3s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1; /* Ensure it's above other content */
 }
 
 /* Media query for small screens */
