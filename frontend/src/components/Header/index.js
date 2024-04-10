@@ -61,6 +61,14 @@ const Header = () => {
                             {userRole === 'user' && (
                                 <li><Link to="/profile">Profile</Link></li>
                             )}
+                            {userRole === 'admin' && (
+                                <>
+                                <li><Link to="/profile">Profile</Link></li>
+                                <li><Link to="/admin">Admin Panel</Link></li>
+                                </>
+                            )}
+                            <li><Link to="/cart">Cart</Link></li>
+                            <li onClick={handleLogout}><Link>Logout</Link></li>
                             <li><Link to="/cart">cart</Link></li>
                             <li><Link to="/search">search</Link></li>
                             <li><Link to="/order">order history</Link></li>

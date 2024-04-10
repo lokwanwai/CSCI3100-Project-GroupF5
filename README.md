@@ -10,6 +10,8 @@ This is the README file for the My E-commerce Website project. It provides instr
 -New user registration\
 -Shopping Cart(exp connection with Product API, for fetching prod. details and image)\
 -Payment(exp connection with Product API, for change stock qty)\
+-Admin panel (List all users/products, delete users/products)
+-Product detail page(display details of product, add product to cart)
 
 ## Prerequisites
 

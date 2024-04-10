@@ -7,6 +7,7 @@ import ShoppingCart from './pages/ShoppingCart';
 import Search from './pages/Search'
 import OrderHistory from './pages/OrderHistory';
 import CheckOut from './pages/CheckOut';
+import Admin from './pages/Admin';
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
           <Route path="/order" element={< OrderHistory />} />
 
           <Route path="/checkout" element={<CheckOut />} />
-          {/* <Route path="/admin" element={<Admin />} /> */}
+          <Route path="/admin" element={<Admin />} />
           {/* Add more routes for other pages */}
         </Routes>
       </div>
