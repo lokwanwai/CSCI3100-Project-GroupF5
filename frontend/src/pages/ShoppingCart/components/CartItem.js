@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './CartItem.css';
 
 const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
     const { id, name, price, quantity, stock, selected } = item;
@@ -22,14 +23,15 @@ const CartItem = ({ item, onQuantityChange, onRemove, onSelect }) => {
             </td>
             <td className="align-middle product-name">
                 <div className="d-flex align-items-center">
-                    <img
-                        src={`/images/${id}.jpg`}
-                        alt={'Img'}
-                        style={{ width: 'auto', height: '80%', marginRight: '10px' }}
-                        className="d-none d-sm-block"
-                    />
+                    <div className="cart-product-image-container">
+                        <img
+                            src={`http://localhost:5001/api/products/image/${id}`}
+                            alt={name}
+                            className="img-fluid rounded cart-product-image d-none d-sm-block"
+                        />
+                    </div>
                     <Link
-                        to={`/product/id=${id}`}
+                        to={`/product/${id}`}
                         style={{ color: 'black', fontWeight: 'bold', textDecoration: 'none' }}
                     >
                         {name}
