@@ -12,7 +12,6 @@ const Admin = () => {
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
 
-    const [userEmail, setUserEmail] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userRole, setUserRole] = useState(null);
 
@@ -33,7 +32,6 @@ const Admin = () => {
                 return response.json();
             })
             .then(data => {
-                setUserEmail(data.email); // Set user email if token is valid
                 setIsLoggedIn(true); // Set isLoggedIn to true if token is valid
                 setUserRole(data.isAdmin ? 'admin' : 'user'); // Set userRole based on the isAdmin flag
             })
@@ -69,20 +67,21 @@ const Admin = () => {
         fetchProducts();
     }, []);
 
-    const handleDeleteUser = async (userId) => {
+    const handleDeleteUser = async (userEmail) => {
         try {
-            await axios.delete(`http://localhost:5001/api/users/delete-user/${userId}`);
-            setUsers(users.filter((user) => user.id !== userId));
+            await axios.delete(`http://localhost:5001/api/users/delete-user/${userEmail}`);
+            setUsers(users.filter((user) => user.userEmail !== userEmail));
             window.location.reload();
         } catch (error) {
             console.error('Error deleting user:', error);
         }
     };
 
-    const handleDeleteProduct = async (productId) => {
+    const handleDeleteProduct = async (productName) => {
         try {
-            await axios.delete(`http://localhost:5001/api/products/delete-product/${productId}`);
-            setProducts(products.filter((product) => product.id !== productId));
+            console.log(productName);
+            await axios.delete(`http://localhost:5001/api/products/delete-product/${productName}`);
+            setProducts(products.filter((product) => product.productName !== productName));
             window.location.reload();
         } catch (error) {
             console.error('Error deleting product:', error);
@@ -94,7 +93,7 @@ const Admin = () => {
             <Header />
             <main>
                 <h1>Admin Panel</h1>
-                {userEmail && <p>User Email: {userEmail}</p>} {/* Display user email if available */}
+                {/* {userEmail && <p>User Email: {userEmail}</p>} Display user email if available */}
                 {isLoggedIn ? (
                     <>
                         {userRole === 'admin' && (
