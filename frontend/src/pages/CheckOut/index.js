@@ -130,7 +130,7 @@ const CheckOut = () => {
     return (
         <>
             <Header />
-            <div className="container checkout-container mt-3">
+            <div className="container checkout-container my-5">
                 {paymentStatus === null && (
                     <h1>Complete your order</h1>
                 )}
@@ -138,7 +138,7 @@ const CheckOut = () => {
                     <div className='h-100 d-flex align-items-center justify-content-center'>
                         <div className="alert alert-success " role="alert">
                             Payment processed successfully!
-                            <Link to="/" className="btn-rounded-sm btn-black mx-3">Back to Home</Link>
+                            <Link to="/" className="mx-3"> Back to Home</Link>
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@ const CheckOut = () => {
                         <div className="alert alert-danger" role="alert">
                             Payment processing failed. Please try again.
                             <br />
-                            <button className=" btn-rounded-sm btn-black mx-3" onClick={() => setPaymentStatus(null)}>Try Again</button>
+                            <button className="mx-3" onClick={() => setPaymentStatus(null)}> Try Again</button>
                         </div>
                     </div>
                 )}
