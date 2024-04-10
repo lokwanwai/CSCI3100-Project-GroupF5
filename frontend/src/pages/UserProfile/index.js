@@ -32,6 +32,40 @@ const User = () => {
             });
     }, []); // The effect runs once after the component mounts
 
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5001/api/cart/?user=${userEmail}`);
+                setItems(response.data);
+            } catch (error) {
+                console.error('Error fetching cart items:', error);
+            }
+        };
+        if (userEmail) {
+            fetchCartItems();
+        }
+    }, [userEmail]);
+
+    const handleEmailChange = (userName, newEmail) => {
+        const updatedUser = user.map((user) => {
+            if (user.Name === userName) {
+                return { ...user, userEmail: newEmail };
+            }
+            return user;
+        });
+        setUser(updatedUser);
+    };
+
+    const handlePaaswordChange = (userName, newPaasword) => {
+        const updatedUser = user.map((user) => {
+            if (user.Name === userName) {
+                return { ...user, saltedPassword: newPaasword };
+            }
+            return user;
+        });
+        setUser(updatedUser);
+    };
+    
     return (
         <div className="user">
             <Header />
@@ -40,7 +74,16 @@ const User = () => {
                 {userEmail && <p>User Email: {userEmail}</p>}
                 <li><Link to="/cart">My Cart</Link></li>
                 <li><Link to="/order">My order</Link></li>
-                <ChangeEmail/>
+                <li><ChangeEmail 
+                    key={userName} 
+                    product={user}
+                    onDelete={handleEmailChange}
+                /><li/>
+                <li><ChangePassword
+                    key={userName} 
+                    product={user}
+                    onDelete={handlePasswordChange}
+                /><li/>
             </main>
             <Footer />
         </div>
