@@ -1,5 +1,4 @@
 import React from 'react';
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 const AddToCart = ({ product, onAddcart }) => {
 	const [itemCount, setItemCount] = React.useState(1);

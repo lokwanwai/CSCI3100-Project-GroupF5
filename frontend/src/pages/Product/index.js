@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
 import axios from 'axios';
 import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
@@ -79,12 +78,12 @@ const Product = () => {
                     <div class="title">PRODUCT DETAIL</div>
                     <div class="detail">
                         <tr>
-                            <td>{product.productPhoto}</td>
+                            <td>{products.productPhoto}</td>
                         </tr>
                         <tr>
-                            <td>{product.productName}</td>
-                            <td>{product.productPrice}</td>
-                            <td>{product.productDescription}</td>
+                            <td>{products.productName}</td>
+                            <td>{products.productPrice}</td>
+                            <td>{products.productDescription}</td>
                         </tr>
                     </div>
                     <div class="addtocart">

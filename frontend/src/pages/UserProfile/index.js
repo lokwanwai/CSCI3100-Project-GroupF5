@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import './style.css';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
 
