@@ -98,6 +98,6 @@ const Product = () => {
             <Footer />
         </div>
     );
-}
+};
 
-export default Product
+export default Product;
