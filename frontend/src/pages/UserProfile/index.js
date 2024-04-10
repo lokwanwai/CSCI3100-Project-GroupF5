@@ -7,7 +7,7 @@ import { ChangeEmail } from './ChangeEmail';
 import { ChangePassword } from './ChangePassword';
 
 
-const User = () => {
+const UserProfile = () => {
     const [userEmail, setUserEmail] = useState('');
 
     useEffect(() => {
@@ -72,6 +72,7 @@ const User = () => {
         <div className="user">
             <Header />
             <main>
+        
                 <h1>User Profile</h1>
                 {userEmail && <p>User Email: {userEmail}</p>}
                 <li><Link to="/cart">My Cart</Link></li>
