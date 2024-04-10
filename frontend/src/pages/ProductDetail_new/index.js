@@ -33,16 +33,16 @@ const ProductDetail = () => {
             });
 
         // Fetch product data
-        const productData = {
-            "_id": "123",
-            "productName": "Wireless Bluetooth Headphones",
-            "productPrice": 11.99,
-            "productDescription": "Experience high-quality sound with these wireless Bluetooth headphones. Enjoy your favorite music, podcasts, and more with crystal-clear audio and a comfortable fit.",
-            "productImage": "https://example.com/images/headphones.jpg",
-            "productStorage": 3
-        };
-        setProduct(productData);
-    }, []);
+        fetch(`http://localhost:5001/api/products/getdetails/${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                setProduct(data);
+                console.log('Product details:', data);
+            })
+            .catch(error => {
+                console.error('Error fetching product details:', error);
+            });
+    }, [productId]);
 
     const handleQuantityChange = (event) => {
         if (event.target.value < 0) {
@@ -75,7 +75,7 @@ const ProductDetail = () => {
             },
             body: JSON.stringify({
                 userEmail,
-                productId: product._id,
+                productId: product.productID,
                 name: product.productName,
                 price: product.productPrice,
                 quantity,
@@ -94,7 +94,6 @@ const ProductDetail = () => {
             });
     };
 
-
     return (
         <>
             <Header />
@@ -102,7 +101,13 @@ const ProductDetail = () => {
                 {product && (
                     <div className="row">
                         <div className="col-md-6">
-                            <img src={product.productImage} alt="Product" className="img-fluid rounded" />
+                            <div className="product-image-container">
+                                <img
+                                    src={`http://localhost:5001/api/products/image/${product.productID}`}
+                                    alt="Product"
+                                    className="img-fluid rounded product-image"
+                                />
+                            </div>
                         </div>
                         <div className="col-md-6">
                             <h2 className="product-name">{product.productName}</h2>
