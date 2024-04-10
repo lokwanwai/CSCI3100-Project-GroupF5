@@ -63,11 +63,16 @@ const Header = () => {
         <header>
             <nav className="header">
                 <div className='header-container'>
+                    
                     <div className="header-image" >
-                        <img className="logo" src={logo} alt='Logo'></img>
+                        <Link to="/">
+                            <img className="logo" src={logo} alt='Logo'></img>
+                        </Link>
                     </div>
                     <div className="header-title">
-                        <h3>SuperMall</h3>
+                        <Link to="/">
+                            <h3>SuperMall</h3>
+                        </Link>
                     </div>
                 </div>
                 <div className={`menu`}>
