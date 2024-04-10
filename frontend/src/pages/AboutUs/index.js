@@ -10,7 +10,9 @@ const AboutUs = () => {
             <Header />
             <main>
                 <h1>About Us</h1>
-                <p>This is a shopping mall...</p>
+                <h5>Online Shopping Mall</h5>
+                <p>Tel: +852 12345678</p>
+                <p>E-mail: csci3100gp5@gmail.com</p>
             </main>
             <Footer />
         </div>

@@ -3,19 +3,18 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 // import './style.css';
 
-const FAQ = () => {
+const Shipping = () => {
 
     return (
-        <div className="FAQ">
+        <div className="Shipping">
             <Header />
             <main>
-                <h1>FAQ</h1>
-                <h6>Can I check if the products are shipped?</h6>
-                <p>You can check the status of your previous order in Order History page after login</p>\
+                <h1>Shipping and Return Policy</h1>
+                <p>Check your order status after login. Contact 12345678 for more deatils</p>
             </main>
             <Footer />
         </div>
     );
 };
 
-export default FAQ;
+export default Shipping;
