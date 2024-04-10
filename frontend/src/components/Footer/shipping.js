@@ -1,11 +1,18 @@
 import React from 'react';
 import './style.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 
 const shipping = () => {
     return (
-        <main>
-          <p> This is shipping policy </p>
-        </main>
+        <div>
+            <Header />
+            <main>
+              <p> This is shipping policy </p>
+            </main>
+            <Footer />
+        <div/>
     );
 };
 
