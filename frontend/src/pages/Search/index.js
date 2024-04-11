@@ -173,12 +173,12 @@ const Search = () => {
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your search query"
+          placeholder="Search by keyword or product ID"
         />
         <button className='btn btn-outline-secondary btn-sm' onClick={searchProducts}>Search</button>
       </div>
 
-      <div className='input'>
+      {/* <div className='input'>
         <input className='searchId'
           type="text"
           value={productIdInput}
@@ -186,7 +186,7 @@ const Search = () => {
           placeholder="Search by product ID"
         />
         <button className='btn btn-outline-secondary btn-sm' onClick={searchProductById}>Search</button>
-      </div>
+      </div> */}
 
       <div className='input'>
         <input className='searchPrice'
