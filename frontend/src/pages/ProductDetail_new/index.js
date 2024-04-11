@@ -9,6 +9,12 @@ const ProductDetail = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [userEmail, setUserEmail] = useState('');
+    const [comments, setComments] = useState([
+        { productID: '101', userName: 'Carrie L', comment: 'Cool!' },
+        { productID: '102', userName: 'Paul', comment: 'This is nice' },
+        { productID: '101', userName: 'Joseph C', comment: 'Shipping is fast' },
+    ]);
+    const [newComment, setNewComment] = useState('');
 
     useEffect(() => {
         // Check if user is logged in
@@ -101,6 +107,48 @@ const ProductDetail = () => {
     };
     
 
+    const handleCommentChange = event => {
+        setNewComment(event.target.value);
+      };
+
+    const handleAddComment = () => {
+        if (!userEmail) {
+          alert('Please log in to add a comment.');
+          return;
+        }
+    
+        if (!newComment.trim()) {
+          alert('Please enter a comment.');
+          return;
+        }
+    
+        const newCommentObj = {
+          productID: product.productID,
+          userName: userEmail,
+          comment: newComment,
+        };
+    
+        const updatedComments = [...comments, newCommentObj];
+    
+        setComments(updatedComments);
+        setNewComment('');
+      };
+    
+
+    const renderComments = () => {
+        const productComments = comments.filter((comment) => parseInt(comment.productID) === product.productID);
+        if (productComments.length === 0) {
+            return <p>No comment yet</p>;
+          }
+        return productComments.map((comment, index) => (
+          <div key={index}>
+            <p>
+              {comment.userName}: {comment.comment}
+            </p>
+          </div>
+        ));
+      };
+
     return (
         <>
             <Header />
@@ -136,6 +184,23 @@ const ProductDetail = () => {
                             <button className="btn btn-dark add-to-cart-btn" onClick={handleAddToCart}>
                                 Add to Cart
                             </button>
+                            <div className="mt-3 comments-section">
+                                <h3>Comments</h3>
+                                {renderComments()}
+                                {userEmail && (
+                                <div className="add-comment">
+                                    <textarea
+                                    className="form-control"
+                                    placeholder="Type your comment..."
+                                    value={newComment}
+                                    onChange={handleCommentChange}
+                                    ></textarea>
+                                    <button className="btn btn-primary mt-2" onClick={handleAddComment}>
+                                    Add Comment
+                                    </button>
+                                </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 )}

@@ -116,6 +116,7 @@ import './Search.css';
 
 const Search = () => {
   const [items, setItems] = useState([]);
+  const [originalItems, setOriginalItems] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [productIdInput, setProductIdInput] = useState('');
   const [minPrice, setMinPrice] = useState('');
@@ -125,6 +126,7 @@ const Search = () => {
     try {
       const response = await axios.get(url);
       setItems(response.data);
+      setOriginalItems(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
     }
@@ -140,6 +142,7 @@ const Search = () => {
   }, []);
 
   const searchProductById = () => {
+    const productId = parseInt(productIdInput);
     const url = `http://localhost:5001/api/products/searchByID/?id=${productIdInput}`;
     fetchProducts(url);
   };
@@ -148,12 +151,12 @@ const Search = () => {
     if (minPrice === '' || maxPrice === '') {
       return;
     }
-  
-    const filteredItems = items.filter((item) => {
-      console.log(item);
+
+    const filteredItems = originalItems.filter((item) => {
+        console.log(item);
       if (item.productPrice) {
-        const itemPriceStr = String(item.productPrice); // Convert to string to ensure .replace works
-        const itemPrice = parseFloat(itemPriceStr.replace(/[^0-9.-]+/g, ''));
+        //const itemPrice = parseFloat(item.productPrice.replace(/[^0-9.-]+/g, ''));
+        const itemPrice = item.productPrice;
         return (itemPrice >= parseFloat(minPrice)) && (itemPrice <= parseFloat(maxPrice));
       }
       return false;

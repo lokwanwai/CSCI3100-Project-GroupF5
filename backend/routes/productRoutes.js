@@ -47,17 +47,18 @@ router.get('/search', async (req, res) => {
 });
 
 router.get("/searchByID", async (req, res) => {
-  const id = req.query.id;
+  const productID = req.query.id;
   try {
-      const product = await Products.find({productID : id});
-      if (product) {
-          res.json(product);
-      } else {
-          res.status(404).json({ message: 'Product not found' });
-      }
+    const product = await Products.findOne({ productID }); // Use findOne instead of findById
+
+    if (product) {
+      res.json([product]);
+    } else {
+      res.status(404).json({ message: 'Product not found' });
+    }
   } catch (error) {
-      console.error('Error searching products:', error);
-      res.status(500).json({ message: 'Internal server error' });
+    console.error('Error searching products:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
