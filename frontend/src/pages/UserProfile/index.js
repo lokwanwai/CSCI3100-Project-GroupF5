@@ -82,10 +82,10 @@ const UserProfile = () => {
                         </table>
                     </div>
                     <div className="profile-actions">
-                        <div className="profile-actions-row">
+                        {/* <div className="profile-actions-row">
                             <button className="btn-primary" onClick={() => navigate('/cart')}>Shopping Cart</button>
                             <button className="btn-primary" onClick={() => navigate('/order')}>Order</button>
-                        </div>
+                        </div> */}
                         <div className="profile-actions-row">
                             <button className="btn-secondary" onClick={() => navigate('/editname')}>Change Name</button>
                             <button className="btn-secondary" onClick={() => navigate('/editpw')}>Change Password</button>

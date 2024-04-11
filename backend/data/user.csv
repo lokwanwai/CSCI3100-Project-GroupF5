@@ -2,7 +2,6 @@ _id,userEmail,userName,saltedPassword,isAdmin,__v
 660f6c4234304d6269d4be9e,dummy2@testing.com,DummyUser2,someHashedPasswordHere,false,0
 660f6c4234304d6269d4be9d,dummy1@testing.com,DummyUser1,someHashedPasswordHere,false,0
 660f6c4234304d6269d4bea0,admin1@testing.com,AdminUser1,anotherHashedPasswordHere,true,0
-660f6c4234304d6269d4be9f,admin@testing.com,AdminUser,anotherHashedPasswordHere,true,0
 660f6c7734304d6269d4beaa,anthony@chiho.work,Anthony Y,$2a$10$373Z.7/zmesGSzxWwa2ONO8bO1c.SmI0cn3p6Fwu7Rnr2BkZCb/1G,false,0
 660fdcf753fd739adbd22ca0,user,User Dev,$2a$10$qVzdrTtvHfLm.On4LQKanOWXBX/KcV/4vEcmCWInO1npqNXhdit3q,false,0
-660fdcfc53fd739adbd22ca4,admin,Admin Dev,$2a$10$rZ9b4gui4wU1tNwRZBkszeCHPFoO4n1DsM03VyAk1hQca0H2oMUQG,true,0
+660fdcfc53fd739adbd22ca4,admin@demo.com,Demo Admin,$2a$10$rZ9b4gui4wU1tNwRZBkszeCHPFoO4n1DsM03VyAk1hQca0H2oMUQG,true,0
