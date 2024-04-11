@@ -37,7 +37,7 @@ const ProductDetail = () => {
             .then(response => response.json())
             .then(data => {
                 setProduct(data);
-                console.log('Product details:', data);
+                // console.log('Product details:', data);
             })
             .catch(error => {
                 console.error('Error fetching product details:', error);
@@ -61,12 +61,18 @@ const ProductDetail = () => {
             alert('Please log in to add items to the cart.');
             return;
         }
-
+    
         if (isNaN(quantity) || quantity <= 0) {
             alert('Please enter a valid quantity.');
             return;
         }
-
+    
+        // Check if there is enough stock before adding to the cart
+        if (quantity > product.productStorage) {
+            alert('Not enough stock available. Please adjust your quantity.');
+            return; // Exit the function as we cannot proceed with the addition
+        }
+    
         // Make an API call to add the item to the cart
         fetch('http://localhost:5001/api/cart/add-item', {
             method: 'POST',
@@ -79,7 +85,7 @@ const ProductDetail = () => {
                 name: product.productName,
                 price: product.productPrice,
                 quantity,
-                stock: product.productStorage,
+                stock: product.productStorage, // Consider if you really need to send stock info to your endpoint
             }),
         })
             .then(response => response.json())
@@ -93,6 +99,7 @@ const ProductDetail = () => {
                 // Handle the error, show an error message, or update the UI
             });
     };
+    
 
     return (
         <>

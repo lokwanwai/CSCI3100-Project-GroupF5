@@ -23,7 +23,7 @@ router.get('/search', async (req, res) => {
   try {
       const searchedProducts = await Products.find({
         $or: [
-          { productDescription: { $regex: keyword, $options: 'i' } }, // Case-insensitive search in productDescription
+          { productID : keyword }, // Search by productID
           { productName: { $regex: keyword, $options: 'i' } } // Case-insensitive search in productName
         ]
       })
@@ -49,7 +49,7 @@ router.get('/search', async (req, res) => {
 router.get("/searchByID", async (req, res) => {
   const id = req.query.id;
   try {
-      const product = await Products.findById(productID);
+      const product = await Products.find({productID : id});
       if (product) {
           res.json(product);
       } else {
@@ -64,7 +64,7 @@ router.get("/searchByID", async (req, res) => {
 router.get("/detail", async (req, res) => {
   const id = req.query.id;
   try {
-      const product = await Product.findById(productID);
+      const product = await Product.find({productID : id});
       if (product) {
           res.json(product);
       } else {

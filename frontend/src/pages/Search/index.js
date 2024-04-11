@@ -148,16 +148,17 @@ const Search = () => {
     if (minPrice === '' || maxPrice === '') {
       return;
     }
-
+  
     const filteredItems = items.filter((item) => {
-        console.log(item);
+      console.log(item);
       if (item.productPrice) {
-        const itemPrice = parseFloat(item.productPrice.replace(/[^0-9.-]+/g, ''));
+        const itemPriceStr = String(item.productPrice); // Convert to string to ensure .replace works
+        const itemPrice = parseFloat(itemPriceStr.replace(/[^0-9.-]+/g, ''));
         return (itemPrice >= parseFloat(minPrice)) && (itemPrice <= parseFloat(maxPrice));
       }
       return false;
     });
-
+  
     setItems(filteredItems);
   };
 
