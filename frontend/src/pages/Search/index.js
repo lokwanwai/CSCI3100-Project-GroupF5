@@ -148,16 +148,17 @@ const Search = () => {
     if (minPrice === '' || maxPrice === '') {
       return;
     }
-
+  
     const filteredItems = items.filter((item) => {
-        console.log(item);
+      console.log(item);
       if (item.productPrice) {
-        const itemPrice = parseFloat(item.productPrice.replace(/[^0-9.-]+/g, ''));
+        const itemPriceStr = String(item.productPrice); // Convert to string to ensure .replace works
+        const itemPrice = parseFloat(itemPriceStr.replace(/[^0-9.-]+/g, ''));
         return (itemPrice >= parseFloat(minPrice)) && (itemPrice <= parseFloat(maxPrice));
       }
       return false;
     });
-
+  
     setItems(filteredItems);
   };
 
@@ -172,12 +173,12 @@ const Search = () => {
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your search query"
+          placeholder="Search by keyword or product ID"
         />
         <button className='btn btn-outline-secondary btn-sm' onClick={searchProducts}>Search</button>
       </div>
 
-      <div className='input'>
+      {/* <div className='input'>
         <input className='searchId'
           type="text"
           value={productIdInput}
@@ -185,7 +186,7 @@ const Search = () => {
           placeholder="Search by product ID"
         />
         <button className='btn btn-outline-secondary btn-sm' onClick={searchProductById}>Search</button>
-      </div>
+      </div> */}
 
       <div className='input'>
         <input className='searchPrice'
