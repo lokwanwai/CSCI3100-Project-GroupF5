@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import ChangePassword from './pages/changePassword/changePassword';
+import ChangeUserName from './pages/changeUserName/changeUserName';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ShoppingCart from './pages/ShoppingCart';
@@ -30,10 +32,12 @@ const App = () => {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/product" element={<Product />} /> # no longer use
+
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/editname" element={<ChangeUserName />} />
+          <Route path="/editpw" element={<ChangePassword />} />
           {/* Add more routes for other pages */}
         </Routes>
       </div>

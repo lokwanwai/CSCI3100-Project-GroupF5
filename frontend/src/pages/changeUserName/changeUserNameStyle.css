@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.unique-change-username-container, .unique-form-container, .unique-change-username-form, .unique-form-group, .unique-input, .unique-otp-button, .unique-change-username-submit {
+    font-family: 'Poppins', sans-serif;
+}
+
+.unique-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .unique-form-container {
+        margin-top: 150px;
+        margin-bottom: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .unique-form-container {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .unique-form-container {
+        margin-top: 75px;
+        margin-bottom: 75px;
+    }
+}
+
+.unique-change-username-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #ccc;
+}
+
+.unique-change-username-form h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top:30px;
+}
+
+.unique-form-group {
+    margin-bottom: 15px;
+}
+
+.unique-form-group label {
+    display: block;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.unique-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.unique-otp-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 32px;
+    border: none;
+    background-color: #4CAF50; /* Changed color to indicate a different action */
+    color: white;
+    cursor: pointer;
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+
+.unique-change-username-submit {
+    width: 100%;
+    padding: 15px;
+    border-radius: 32px;
+    border: none;
+    background-color: #333333; /* Another distinct color for the submit action */
+    color: white;
+    cursor: pointer;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}

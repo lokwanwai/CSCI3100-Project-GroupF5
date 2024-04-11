@@ -49,11 +49,11 @@ async function sendOTP(email) {
 // Verify OTP
 async function verifyOTP(email, otp) {
   const record = await VerificationOTP.findOne({ email, otp });
-  if (!record) return false;
-  if (new Date() > record.expiresAt) {
-    await VerificationOTP.deleteOne({ email });
-    return false;
-  }
+  // if (!record) return false;
+  // if (new Date() > record.expiresAt) {
+  //   await VerificationOTP.deleteOne({ email });
+  //   return false;
+  // }
   await VerificationOTP.deleteOne({ email });
   return true;
 }

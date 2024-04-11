@@ -87,7 +87,7 @@ const UserProfile = () => {
                             <button className="btn-primary" onClick={() => navigate('/order')}>Order</button>
                         </div>
                         <div className="profile-actions-row">
-                            <button className="btn-secondary" onClick={() => navigate('/editname')}>Change User Name</button>
+                            <button className="btn-secondary" onClick={() => navigate('/editname')}>Change Name</button>
                             <button className="btn-secondary" onClick={() => navigate('/editpw')}>Change Password</button>
                         </div>
                     </div>
