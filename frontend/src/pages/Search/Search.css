@@ -11,19 +11,25 @@
   align-items: center;
   width: 50%;
   margin: 0 auto; 
+  
 }
 
 .searchQuery, .searchId, .searchPrice {
   padding: 10px;
   margin-bottom: 10px;
   width: 100%;
+  border-radius: 7px;
+  border: 1px solid #636666;
 }
 
 .Search .search-inputs {
   margin-bottom: 1rem;
+
+
 }
 
 .Search .search-inputs input[type="text"] {
+  
   margin-right: 0.5rem;
 }
 
@@ -57,8 +63,11 @@
 
 .Search button {
   padding: 10px 20px;
+  margin-left: 5px;
   margin-bottom: 10px;
+  width: 100px;
   height: 100%;
+  border-radius: 25px;
 }
 
 .card {
