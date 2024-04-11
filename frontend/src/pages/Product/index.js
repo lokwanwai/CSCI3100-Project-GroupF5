@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
 import axios from 'axios';
 import AddToCart from "./AddToCart"
 import Header from '../../components/Header';
@@ -7,7 +6,9 @@ import Footer from '../../components/Footer';
 
 const Product = () => {
     const [userEmail, setUserEmail] = useState('');
-    
+    const [products, setProducts] = useState('');
+    const [Items, setItems] = useState('');
+
     useEffect(() => {
         // Since the token is stored in cookies, we include credentials in our fetch request.
         // The browser will automatically handle sending the appropriate cookies.
@@ -61,7 +62,7 @@ const Product = () => {
     
     const handleAddtoCart = async (product, newQuantity) => {
         try {
-            await axios.post(`http://localhost:5001/api/cart/add-item/${productId}`);
+            await axios.post(`http://localhost:5001/api/cart/add-item/${product.productName}`);
             setProducts(product, newQuantity);
             window.location.reload();
         } catch (error) {
@@ -73,15 +74,16 @@ const Product = () => {
         <div className="productdetail">
             <Header />
             <main>
-                <div class="container">
+                <div class="product-container">
                     <div class="title">PRODUCT DETAIL</div>
                     <div class="detail">
                         <tr>
-                            <td>{product.productPhoto}</td>
+                            <td>{products.productPhoto}</td>
                         </tr>
-                            <td>{product.productName}</td>
-                            <td>{product.productPrice}</td>
-                            <td>{product.productDescription}</td>
+                        <tr>
+                            <td>{products.productName}</td>
+                            <td>{products.productPrice}</td>
+                            <td>{products.productDescription}</td>
                         </tr>
                     </div>
                     <div class="addtocart">
@@ -98,6 +100,7 @@ const Product = () => {
             <Footer />
         </div>
     );
-}
+};
 
-export default Product
+export default Product;
+

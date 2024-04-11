@@ -1,9 +1,43 @@
-#home {
-    position: relative;
-    min-height: 100vh;
-  }
+main {
+    align-items: center;
+    text-align: center;
+}
+
+/* Example CSS for a grid of product blocks */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    grid-gap: 10px;
+    list-style: none; /* Remove default list styling */
+    padding: 1rem;
+}
+
+.product-list {
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to new rows */
+    flex-direction: row; /* Arrange items horizontally */
+    padding: 10px;
+}
+
+.product-item {
+    list-style: none;
+    flex: 1; /* Distribute available space equally */
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    min-height: 100px; /* Adjust height as needed */
+    aspect-ratio: 1 / 1; /* Make item square */
+}
+
+.product-item div {
+    height: 70%;
+}
+
+.product-item a {
+    text-decoration: none;
+    color: #212529;
+}
   
-#content-wrap {
-    padding-bottom: 3rem;    /* Footer height */
-  }
+
   

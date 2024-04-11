@@ -112,8 +112,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductItem from './components/ProductItem';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import './Search.css';
 
 const Search = () => {
@@ -165,37 +163,47 @@ const Search = () => {
 
   return (
     <div className="Search">
-      <Header />
-      <div>Search Page</div>
-      <input
-        type="text"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Enter your search query"
-      />
-      <button onClick={searchProducts}>Search</button>
-      <br />
-      <input
-        type="text"
-        value={productIdInput}
-        onChange={(e) => setProductIdInput(e.target.value)}
-        placeholder="Search by product ID"
-      />
-      <button onClick={searchProductById}>Search by ID</button>
-      <br />
-      <input
-        type="number"
-        value={minPrice}
-        onChange={(e) => setMinPrice(e.target.value)}
-        placeholder="Min Price"
-      />
-      <input
-        type="number"
-        value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
-        placeholder="Max Price"
-      />
-      <button onClick={filterProducts}>Filter</button>
+      <div>
+        <h2>Search any product</h2>
+      </div>
+
+      <div className='input'>  
+        <input className='searchQuery'
+          type="text"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="Enter your search query"
+        />
+        <button className='btn btn-outline-secondary btn-sm' onClick={searchProducts}>Search</button>
+      </div>
+
+      <div className='input'>
+        <input className='searchId'
+          type="text"
+          value={productIdInput}
+          onChange={(e) => setProductIdInput(e.target.value)}
+          placeholder="Search by product ID"
+        />
+        <button className='btn btn-outline-secondary btn-sm' onClick={searchProductById}>Search</button>
+      </div>
+
+      <div className='input'>
+        <input className='searchPrice'
+          type="number"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+          placeholder="Min Price"
+        /> 
+        <h2>-</h2>
+        <input className='searchPrice'
+          type="number"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+          placeholder="Max Price"
+        />
+        <button className='btn btn-outline-secondary btn-sm' onClick={filterProducts}>Filter</button>
+      </div>
+
       <br />
       <main className="flex-grow-1">
         <div className="container my-4">
@@ -208,7 +216,6 @@ const Search = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

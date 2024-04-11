@@ -3,13 +3,29 @@ const router = express.Router();
 const Cart = require('../models/cart');
 
 // Add a cart item
-router.delete('/add-item/:productId', async (req, res) => {
+router.post('/add-item', async (req, res) => {
     try {
-        const { productId } = req.params;
-        const { userEmail } = req.body;
+        const { userEmail, productId, name, price, quantity, stock } = req.body;
 
-        // Add the cart item
-        await Cart.insertOne({ userEmail, productId });
+        // Check if the item already exists in the cart
+        const existingCartItem = await Cart.findOne({ userEmail, productId });
+
+        if (existingCartItem) {
+            // If the item already exists, update the quantity
+            existingCartItem.quantity = quantity;
+            await existingCartItem.save();
+        } else {
+            // If the item doesn't exist, create a new cart item
+            const newCartItem = new Cart({
+                userEmail,
+                productId,
+                name,
+                price,
+                quantity,
+                stock,
+            });
+            await newCartItem.save();
+        }
 
         res.json({ message: 'Item added to the cart successfully' });
     } catch (error) {
@@ -66,6 +82,5 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-
 
 module.exports = router;

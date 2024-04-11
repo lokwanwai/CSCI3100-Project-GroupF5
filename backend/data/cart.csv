@@ -1,4 +1,4 @@
 userEmail,productId,name,price,quantity,stock
-user,1,Shirt,19.99,1,3
-user,2,Pants,29.99,2,0
-user,3,Shoes,49.99,1,8
+user,101,Floral Maxi Dress,350.00,1,100
+user,102,Leather Crossbody Bag,450.00,2,50
+user,111,Embellished Sandals,380.00,1,10

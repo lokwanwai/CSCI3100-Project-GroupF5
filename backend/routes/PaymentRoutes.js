@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/order');
-const axios = require('axios'); // Import axios for making HTTP requests
+const axios = require('axios');
 
 router.post('/process-payment', async (req, res) => {
     try {
@@ -19,13 +19,28 @@ router.post('/process-payment', async (req, res) => {
             }
         }
 
+        // Update the stock quantity for each item in the order
         for (const item of items) {
-            // change stock number of each item in the database
-            // wait developing of the stock management backend
+            try {
+                // Get the current product details
+                const response = await axios.get(`http://localhost:5001/api/products/getdetails/${item.productId}`);
+                const product = response.data;
+
+                // Calculate the new quantity by subtracting the ordered quantity from the current stock
+                const newQuantity = product.productStorage - item.quantity;
+
+                // Update the product quantity
+                await axios.put('http://localhost:5001/api/products/changeqty', {
+                    productID: item.productId,
+                    quantity: newQuantity
+                });
+            } catch (error) {
+                console.error(`Error updating quantity for item ${item.productId}:`, error);
+                return res.status(500).json({ success: false, error: 'Payment processing failed' });
+            }
         }
 
-
-        // Create a new order document after process other database operations
+        // Create a new order document after processing other database operations
         const order = new Order({
             userEmail: userEmail,
             items,
@@ -36,8 +51,6 @@ router.post('/process-payment', async (req, res) => {
 
         // Save the order to the database
         await order.save();
-
-
 
         // Payment processing logic goes here
 

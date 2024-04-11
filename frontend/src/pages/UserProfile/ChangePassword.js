@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ChangePassword  = ({ user, ChangePassword }) => {
+const ChangePassword = ({ user, onChangePassword }) => {
     return (
         <tr>
             <button
                 className="btn btn-outline-secondary btn-sm"
                 type="button"
-                onClick={() => changeEmail(user.userName)}
+                onClick={() => onChangePassword(user.userName)}
             >
                 Change password
             </button>

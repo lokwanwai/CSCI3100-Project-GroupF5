@@ -1,16 +1,18 @@
-.footer {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    height: 3rem;            /* Footer height */
-    background-color: #888888; /* Set your desired background color */
-    color: #fff; /* Text color */
+/* List all pages/elements that helps to adjust footer */
+.home, .unique-login-page, .unique-register-container,
+.About.Us, .FAQ, .Shipping, .app, .shopping-cart,
+.user-profile, .order-history {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
 
-    /* Center the navigation horizontally */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.footer {
+    margin-top:auto;
+    width: 100%;
+    background-color: #e9ecef; /* Set your desired background color */
+    color: #333333; /* Text color */
+}
 
 /* Style the navigation list */
 .footer ul {
@@ -18,22 +20,30 @@
     margin: 0;
     padding: 0;
     display: flex; /* Display the list items horizontally */
+    justify-content: space-between;
 }
 
 /* Style the navigation list items */
-.footer li {
-    margin-right: 20px; /* Add spacing between list items */
+.footer-item {
+    margin: 1.5rem; /* Add spacing between list items */
+    flex: 1;
 }
 
 /* Style the links */
 .footer a {
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+    color: #333333;
+    /* font-weight: bold; */
     transition: color 0.3s; /* Smooth color transition on hover */
 }
 
 /* Change link color on hover */
 .footer a:hover {
-    color: #ffcc00; /* Your desired hover color */
+    color: #888888; /* Your desired hover color */
 }
+
+
+.footer-item li:not(:has(h3)) {
+    /* Styles for the selected <li> items */
+    margin-left: 2px;
+  }

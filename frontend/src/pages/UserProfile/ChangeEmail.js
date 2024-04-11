@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ChangeEmail  = ({ user, changeEmail }) => {
+const ChangeEmail = ({ user, onChangeEmail }) => {
     return (
         <tr>
             <button
                 className="btn btn-outline-secondary btn-sm"
                 type="button"
-                onClick={() => changeEmail(user.userName)}
+                onClick={() => onChangeEmail(user.userName)}
             >
                 Change e-mail address
             </button>
@@ -15,3 +15,4 @@ const ChangeEmail  = ({ user, changeEmail }) => {
 };
 
 export default ChangeEmail;
+

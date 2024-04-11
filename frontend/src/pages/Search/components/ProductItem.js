@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 const ProductItem = ({ item }) => {
     return (
       <div className="card">
-        <img src={item.productImage} alt={item.productName} className="card-img-top" />
+        <Link to={`/product/${item.productID}`}>
+        <div>
+          <img
+            src={`http://localhost:5001/api/products/image/${item.productID}`}
+            alt="Product"
+            className="img-fluid rounded product-image"
+          />
+        </div>
         <div className="card-body">
           <h5 className="card-title">{item.productName}</h5>
-          <p className="card-text">Price: {item.productPrice}</p>
+          <p className="card-text">${item.productPrice}</p>
         </div>
+        </Link>
       </div>
     );
   };

@@ -1,0 +1,9 @@
+/* style.css */
+.FAQ {
+    text-align: left;
+}
+
+.FAQ main, .FAQ section, .FAQ .faq-item, .FAQ h1, .FAQ h2, .FAQ h6, .FAQ p {
+    text-align: left;
+    margin-left: 20px; Adjust for alignment and spacing
+}

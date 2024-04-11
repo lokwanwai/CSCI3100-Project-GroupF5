@@ -1,92 +1,98 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import './style.css';
-import { ChangeEmail } from './ChangeEmail';
-import { ChangePassword } from './ChangePassword';
-
+import './UserProfile.css';
 
 const UserProfile = () => {
-    const [userEmail, setUserEmail] = useState('');
-    const [saltedPassword, setsaltedPassword] = useState('');
-    useEffect(() => {
-        // Since the token is stored in cookies, we include credentials in our fetch request.
-        // The browser will automatically handle sending the appropriate cookies.
-        fetch('http://localhost:5001/api/auth/authenticate', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include', // Ensure cookies, including auth tokens, are included in the request
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Token validation failed');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setUserEmail(data.email); // Set user email if token is valid
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, []); // The effect runs once after the component mounts
+    const [userDetails, setUserDetails] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchCartItems = async () => {
+        const authenticate = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/cart/?user=${userEmail}`);
-                setItems(response.data);
+                const authResponse = await fetch('http://localhost:5001/api/auth/authenticate', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                });
+
+                if (!authResponse.ok) {
+                    alert('Please log in to view your profile.');
+                    navigate('/login');
+                } else {
+                    const authData = await authResponse.json();
+
+                    // Fetch user profile details using POST request with JSON body
+                    const profileResponse = await axios.put('http://localhost:5001/api/profile/getdetails', {
+                        email: authData.email
+                    });
+
+                    setUserDetails(profileResponse.data);
+                }
             } catch (error) {
-                console.error('Error fetching cart items:', error);
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                navigate('/');
             }
         };
-        if (userEmail) {
-            fetchCartItems();
-        }
-    }, [userEmail]);
 
-    const handleEmailChange = (userName, newEmail) => {
-        const updatedUser = user.map((user) => {
-            if (user.Name === userName) {
-                return { ...user, userEmail: newEmail };
-            }
-            return user;
-        });
-        setUserEmail(updatedUser);
+        authenticate();
+    }, [navigate]);
+
+    const getRole = (isAdmin) => isAdmin ? 'Admin' : 'User';
+
+    const handleChangeName = () => {
+        // Implement change name functionality
+        console.log('Change Name clicked');
     };
 
-    const handlePasswordChange = (userName, newPaasword) => {
-        const updatedUser = user.map((user) => {
-            if (user.Name === userName) {
-                return { ...user, saltedPassword: newPaasword };
-            }
-            return user;
-        });
-        setsaltedPassword(updatedUser);
+    const handleChangePassword = () => {
+        // Implement change password functionality
+        console.log('Change Password clicked');
     };
-    
+
+    if (!userDetails) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <div className="user">
+        <div className="user-profile">
             <Header />
-            <main>
-                <h1>User Profile</h1>
-                {userEmail && <p>User Email: {userEmail}</p>}
-                <li><Link to="/cart">My Cart</Link></li>
-                <li><Link to="/order">My order</Link></li>
-                <li><ChangeEmail 
-                    key={userName} 
-                    product={user}
-                    changeEmail={handleEmailChange}
-                /><li/>
-                <li><ChangePassword
-                    key={userName} 
-                    product={user}
-                    changePassword={handlePasswordChange}
-                /><li/>
-            </main>
+            <div className="user-profile-container">
+                <main className="user-profile-main">
+                    <h1>User Profile</h1>
+                    <div className="profile-details">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>User Email:</td>
+                                    <td>{userDetails.userEmail}</td>
+                                </tr>
+                                <tr>
+                                    <td>User Name:</td>
+                                    <td>{userDetails.userName}</td>
+                                </tr>
+                                <tr>
+                                    <td>Role:</td>
+                                    <td>{getRole(userDetails.isAdmin)}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="profile-actions">
+                        {/* <div className="profile-actions-row">
+                            <button className="btn-primary" onClick={() => navigate('/cart')}>Shopping Cart</button>
+                            <button className="btn-primary" onClick={() => navigate('/order')}>Order</button>
+                        </div> */}
+                        <div className="profile-actions-row">
+                            <button className="btn-secondary" onClick={() => navigate('/editname')}>Change Name</button>
+                            <button className="btn-secondary" onClick={() => navigate('/editpw')}>Change Password</button>
+                        </div>
+                    </div>
+                </main>
+            </div>
             <Footer />
         </div>
     );

@@ -1,3 +1,5 @@
 _id,userEmail,items.productId,items.name,items.price,items.quantity,shippingCost,total,customerDetails.firstName,customerDetails.lastName,customerDetails.email,customerDetails.phoneNumber,customerDetails.cardHolderName,customerDetails.cardNumber,customerDetails.address,orderDateTime,status
+6614137d2dd817d46c83638c,user,101,Floral Maxi Dress,350.00,1,10,1280.00,userFirst,userLast,testtest@gmail.com,12341234,userHolder,1234123412341234,userAddress,2024-04-08T15:55:41.886Z,Shipping
+
 6614137d2dd817d46c83638c,user,3,ShoesTest,49.99,3,10,159.97,userFirst,userLast,testtest@gmail.com,12341234,userHolder,1234123412341234,userAddress,2024-04-08T15:55:41.886Z,Shipping
 6614137d2dd817d46c83538c,1155144161@link.cuhk.edu.hk,403e4eeabf6afc5e26fa12bb,ProductF,150,3,80,530,userFirst,userLast,1155144161@link.cuhk.edu.hk,12341234,userHolder,1234123412341234,userAddress,2024-04-10T15:55:41.886Z,Shipping
