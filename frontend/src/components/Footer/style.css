@@ -1,4 +1,14 @@
+/* List all pages/elements that helps to adjust footer */
+.home, .unique-login-page, .unique-register-container,
+.About.Us, .FAQ, .Shipping, .app, .shopping-cart,
+.user-profile, .order-history {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
 .footer {
+    margin-top:auto;
     width: 100%;
     background-color: #e9ecef; /* Set your desired background color */
     color: #333333; /* Text color */

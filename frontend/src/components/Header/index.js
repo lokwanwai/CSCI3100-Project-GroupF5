@@ -81,16 +81,13 @@ const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         {isLoggedIn ? (
                             <>
-                                {userRole === 'user' && (
-                                    <li><Link to="/profile">Profile</Link></li>
-                                )}
+                                
+                                <li><Link to="/profile">Profile</Link></li>
                                 {userRole === 'admin' && (
-                                    <>
-                                    <li><Link to="/profile">Profile</Link></li>
                                     <li><Link to="/admin">Admin Panel</Link></li>
-                                    </>
                                 )}
                                 <li><Link to="/cart">Cart</Link></li>
+                                <li><Link to="/order">Order</Link></li>
                                 <li onClick={handleLogout}><Link>Logout</Link></li>
                             </>
                         ) : (
@@ -115,16 +112,12 @@ const Header = () => {
                             <li><Link to="/">Home</Link></li>
                             {isLoggedIn ? (
                                 <>
-                                    {userRole === 'user' && (
-                                        <li><Link to="/profile">Profile</Link></li>
-                                    )}
+                                    <li><Link to="/profile">Profile</Link></li>
                                     {userRole === 'admin' && (
-                                        <>
-                                        <li><Link to="/profile">Profile</Link></li>
                                         <li><Link to="/admin">Admin Panel</Link></li>
-                                        </>
                                     )}
                                     <li><Link to="/cart">Cart</Link></li>
+                                    <li><Link to="/order">Order</Link></li>
                                     <li onClick={handleLogout}><Link>Logout</Link></li>
                                 </>
                             ) : (
