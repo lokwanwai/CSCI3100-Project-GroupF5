@@ -1,7 +1,7 @@
 # CSCI3100-Project-GroupF5
-# My E-commerce Website
+# SuperMall
 
-This is the README file for the My E-commerce Website project. It provides instructions on how to set up the project, install the necessary dependencies, and start the application.
+This is the README file for the SuperMall, a E-commerce Website project. It provides instructions on how to set up the project, install the necessary dependencies, and start the application.
 
 
 
